@@ -3,7 +3,7 @@ import { SignInUser } from '../services/Auth'
 import { useNavigate } from 'react-router-dom'
 
 const Login = ({ setUser }) => {
-  let navigate = useNavigate
+  let navigate = useNavigate()
   const initialState = { email: '', password: '' }
   const [formValues, setFormValues] = useState(initialState)
 
@@ -15,7 +15,8 @@ const Login = ({ setUser }) => {
     const userData = await SignInUser(formValues)
     setFormValues(initialState)
     setUser(userData)
-    navigate('/products')
+    console.log('here')
+    navigate('/Products')
   }
 
   return (

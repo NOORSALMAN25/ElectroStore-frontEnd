@@ -2,7 +2,9 @@ import ProductDetails from '../components/ProductDetails'
 const Products = () => {
   return (
     <>
-      <div></div>
+      <div>
+        <h1>The products</h1>
+      </div>
     </>
   )
 }
