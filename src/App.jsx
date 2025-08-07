@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { CheckSession } from './services/Auth'
 import './App.css'
 import Nav from './components/Nav'
 import Home from './pages/Home'
@@ -8,20 +10,45 @@ import Cart from './pages/Cart'
 import Orders from './pages/Orders'
 import Profile from './pages/Profile'
 import ProductDetails from './components/ProductDetails'
+import Login from './components/Login'
+import SignUp from './components/SignUp'
+
 const App = () => {
+  const [user, setUser] = useState(null)
+  const checkToken = async () => {
+    const userData = await CheckSession()
+    setUser(userData)
+  }
+
+  const handleLogOut = () => {
+    setUser(null)
+    localStorage.clear()
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      checkToken()
+    }
+  }, [])
+
   return (
     <>
       <div>
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          {/* <Route path="/AddProduct" element={<AddProduct />} />
+        <Nav user={user} handleLogOut={handleLogOut} />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login setUser={setUser} />} />
+            <Route path="/signup" element={<SignUp />} />
+            {/* <Route path="/AddProduct" element={<AddProduct />} />
           <Route path="/Products" element={<Products />} />
           <Route path="/Products/:id" element={<ProductDetails />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/Orders" element={<Orders />} />
           <Route path="/Profile" element={<Profile />} /> */}
-        </Routes>
+          </Routes>
+        </main>
       </div>
     </>
   )

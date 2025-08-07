@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react'
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
+import Nav from '../components/Nav'
 
 const Home = () => {
   return (
