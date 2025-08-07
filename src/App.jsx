@@ -23,6 +23,8 @@ const App = () => {
           <Route path="/Profile" element={<Profile />} />
         </Routes>
       </div>
+      
+
     </>
   )
 }
