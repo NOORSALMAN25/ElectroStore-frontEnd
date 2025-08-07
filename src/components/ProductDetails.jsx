@@ -1,5 +1,5 @@
 import ProductReview from './ProductReview'
-ProductDetails = () => {
+const ProductDetails = () => {
   return <></>
 }
 
