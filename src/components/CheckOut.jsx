@@ -1,3 +1,4 @@
+import Payment from '../components/Payment'
 const CheckOut = () => {
   return <></>
 }

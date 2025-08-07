@@ -1,4 +1,5 @@
-const ProductDetails = () => {
+import ProductReview from './ProductReview'
+ProductDetails = () => {
   return <></>
 }
 
