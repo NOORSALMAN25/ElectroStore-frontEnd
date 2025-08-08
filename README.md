@@ -1,4 +1,4 @@
-# Project Title
+# ElectroStore
 
 ## Date: 14/8/2025
 ### By: Mohamed Alsaegh , Noor Salman , Maryam Salah
