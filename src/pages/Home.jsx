@@ -1,9 +1,15 @@
-import Login from '../components/Login'
-import SignUp from '../components/SignUp'
+import { useNavigate } from 'react-router-dom'
+
 const Home = () => {
+  let navigate = useNavigate()
   return (
     <>
-      <div></div>
+      <div>
+        <h2>hello </h2>
+        <button onClick={() => navigate('/signup')}>
+          Click Here To Get Started
+        </button>
+      </div>
     </>
   )
 }
