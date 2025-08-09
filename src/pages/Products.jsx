@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import ProductDetails from '../components/ProductDetails'
-const port = import.meta.env.VITE_BACKEND_URL
+const backendUrl = import.meta.env.VITE_BACKEND_URL
 const Products = () => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`${port}/products`)
-        setProducts(response)
-        console.log('Products fetched:', products)
+        const response = await axios.get(`${backendUrl}/products`)
+        setProducts(response.data)
+        // console.log('Products fetched:', products)
       } catch (error) {
         console.error('Error fetching products:', error)
       }
