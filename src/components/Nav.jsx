@@ -1,52 +1,47 @@
-import { NavLink } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 const Nav = ({ user, handleLogOut }) => {
-  let userOptions
-  if (user) {
-    userOptions = (
-      <>
-        <Link onClick={handleLogOut} to="/">
-          Sign Out
-        </Link>
-      </>
-    )
-  }
-
-  const publicOptions = (
-    <>
-      <Link to="/">Home</Link>
-      <Link to="/signup">Register</Link>
-      <Link to="/login">Login</Link>
-    </>
-  )
-
   return (
-    <>
-      <header>
-        {user ? <h3>Welcome, {user.name}!</h3> : null}
-        <nav>{user ? userOptions : publicOptions}</nav>
-      </header>
+    <nav className="navbar">
+      <NavLink to="/">
+        <div className="logo">Electro Store</div>
+      </NavLink>
 
-      <nav className="navbar">
-        <NavLink to="/">
-          <div className="logo">Electro Store</div>
+      <div className="nav-links">
+        <NavLink className="nav-item" to="/">
+          Home
         </NavLink>
-        <div className="nav-links">
-          <NavLink className="nav-item" to="/">
-            Home
-          </NavLink>
-          <NavLink className="nav-item" to="/products">
-            Products
-          </NavLink>
-          <NavLink className="nav-item" to="/order">
-            Cart
-          </NavLink>
-          <NavLink className="nav-item" to="/profile">
-            Profile
-          </NavLink>
-        </div>
-      </nav>
-    </>
+
+        {user ? (
+          <>
+            <NavLink className="nav-item" to="/products">
+              Products
+            </NavLink>
+            <NavLink className="nav-item" to="/order">
+              Cart
+            </NavLink>
+            <NavLink className="nav-item" to="/profile">
+              Profile
+            </NavLink>
+            <Link className="nav-item" onClick={handleLogOut} to="/">
+              Sign Out
+            </Link>
+          </>
+        ) : (
+          <>
+            {/* this NavLink need to be removed it is just here for testing */}
+            <NavLink className="nav-item" to="/products">
+              Products
+            </NavLink>
+            <NavLink className="nav-item" to="/login">
+              Sign In
+            </NavLink>
+            <NavLink className="nav-item" to="/signup">
+              Register
+            </NavLink>
+          </>
+        )}
+      </div>
+    </nav>
   )
 }
 
