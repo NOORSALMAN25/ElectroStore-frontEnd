@@ -17,20 +17,22 @@ const Product = () => {
       }
     }
     fetchProduct()
-  }, [id, backendUrl])
+  }, [])
 
   return (
-    <div className="">
+    <div className="one-product-box">
       {product ? (
         <div className="one-product-in-a-page">
-          <h2>{product.name}</h2>
           <img src={product.image} alt={product.name} />
-          <h3>Price: ${product.price}</h3>
-          <p>Category: {product.category}</p>
-          <p>{product.description}</p>
+          <div className="product-details">
+            <h2>{product.name}</h2>
+            <h3>Price: ${product.price}</h3>
+            <p>Category: {product.category}</p>
+            <p>{product.description}</p>
+          </div>
         </div>
       ) : (
-        <div className="">
+        <div className="wait-message">
           <h1> Wait a second ... </h1>
         </div>
       )}
