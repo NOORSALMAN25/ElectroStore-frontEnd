@@ -1,7 +1,7 @@
 import ProductReview from './ProductReview'
 import { Link } from 'react-router-dom'
 
-const ProductDetails = () => {
+const ProductDetails = ({ product }) => {
   return (
     <>
       <Link
