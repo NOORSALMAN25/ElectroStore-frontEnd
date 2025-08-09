@@ -1,7 +1,7 @@
 import ProductReview from './ProductReview'
 import { Link } from 'react-router-dom'
 
-const ProductDetails = ({ product }) => {
+const ProductCard = ({ product }) => {
   return (
     <>
       <Link
@@ -18,4 +18,4 @@ const ProductDetails = ({ product }) => {
   )
 }
 
-export default ProductDetails
+export default ProductCard

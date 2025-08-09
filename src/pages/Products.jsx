@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import ProductDetails from '../components/ProductDetails'
+import ProductCard from '../components/ProductCard'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 const Products = () => {
   const [products, setProducts] = useState([])
@@ -24,7 +24,7 @@ const Products = () => {
         <p>No products found.</p>
       ) : (
         products.map((product) => (
-          <ProductDetails key={product._id} product={product} />
+          <ProductCard key={product._id} product={product} />
         ))
       )}
     </div>
