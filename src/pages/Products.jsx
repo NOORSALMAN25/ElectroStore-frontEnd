@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import ProductDetails from '../components/ProductDetails'
-// const n = import.meta.env.VITE_BACKEND_URL
+const port = import.meta.env.VITE_BACKEND_URL
 const Products = () => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`http://localhost:3010/products`)
-        setProducts(response.data)
+        const response = await axios.get(`${port}/products`)
+        setProducts(response)
         console.log('Products fetched:', products)
       } catch (error) {
         console.error('Error fetching products:', error)
@@ -36,7 +36,6 @@ const Products = () => {
         ))
       )}
     </div>
-
   )
 }
 
