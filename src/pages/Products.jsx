@@ -10,7 +10,6 @@ const Products = () => {
       try {
         const response = await axios.get(`${backendUrl}/products`)
         setProducts(response.data)
-        // console.log('Products fetched:', products)
       } catch (error) {
         console.error('Error fetching products:', error)
       }
