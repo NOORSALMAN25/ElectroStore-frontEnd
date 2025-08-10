@@ -16,7 +16,7 @@ const Login = ({ setUser }) => {
     setFormValues(initialState)
     setUser(userData)
     console.log('here')
-    navigate('/Products')
+    navigate('/')
   }
 
   return (
