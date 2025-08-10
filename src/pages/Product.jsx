@@ -31,7 +31,7 @@ const Product = ({ user }) => {
             <h3>Price: ${product.price}</h3>
             <p>Category: {product.category}</p>
             <p>{product.description}</p>
-            {user && user.role === 'admin' ? (
+            {/* {user && user.role === 'admin' ? (
               <>
                 <Link to={``}>
                   <button>Edit</button>
@@ -44,7 +44,7 @@ const Product = ({ user }) => {
               <Link to="">
                 <button>Add to Cart</button>
               </Link>
-            )}
+            )} */}
           </div>
           <div>
             <ProductReview />
