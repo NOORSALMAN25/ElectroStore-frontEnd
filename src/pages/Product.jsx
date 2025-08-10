@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import ProductReview from '../components/ProductReview'
-
+import { Link } from 'react-router-dom'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const Product = ({ user }) => {
@@ -19,7 +19,30 @@ const Product = ({ user }) => {
       }
     }
     fetchProduct()
-  }, [])
+  }, [id, backendUrl])
+
+  const buttons_auth = () => {
+    return (
+      <>
+        {user && user.role === 'admin' ? (
+          <>
+            <Link to={`/Products/${id}/EditProduct`}>
+              <button>Edit</button>
+            </Link>
+            <Link to="/">
+              <button>Delete</button>
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to="">
+              <button>Add to Cart</button>
+            </Link>
+          </>
+        )}
+      </>
+    )
+  }
 
   return (
     <div className="one-product-box">
@@ -31,20 +54,7 @@ const Product = ({ user }) => {
             <h3>Price: ${product.price}</h3>
             <p>Category: {product.category}</p>
             <p>{product.description}</p>
-            {/* {user && user.role === 'admin' ? (
-              <>
-                <Link to={``}>
-                  <button>Edit</button>
-                </Link>
-                <Link to={``}>
-                  <button>Delete</button>
-                </Link>
-              </>
-            ) : (
-              <Link to="">
-                <button>Add to Cart</button>
-              </Link>
-            )} */}
+            <p>{buttons_auth()}</p>
           </div>
           <div>
             <ProductReview />
