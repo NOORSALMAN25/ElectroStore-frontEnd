@@ -13,9 +13,10 @@ import ProductCard from './components/ProductCard'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Product from './pages/Product'
-
+import EditProduct from './pages/EditProduct'
 const App = () => {
   const [user, setUser] = useState(null)
+
   const checkToken = async () => {
     const userData = await CheckSession()
     setUser(userData)
@@ -43,11 +44,15 @@ const App = () => {
             <Route path="/login" element={<Login setUser={setUser} />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/AddProduct" element={<AddProduct />} />
-            <Route path="/Products" element={<Products />} />
+
+
+            <Route path="/Products" element={<Products user={user} />} />
             <Route path="/Products/:id" element={<Product user={user} />} />
             <Route path="/Cart" element={<Cart />} />
             <Route path="/Orders" element={<Orders />} />
             <Route path="/Profile" element={<Profile user={user} />} />
+            <Route path="/Products/:id/EditProduct" element={<EditProduct />} />
+
           </Routes>
         </main>
       </div>
