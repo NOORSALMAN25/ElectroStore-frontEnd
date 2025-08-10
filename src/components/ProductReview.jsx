@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 const ProductReview = ({ productId }) => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL
+
   const [reviews, setReviews] = useState([])
   const [comment, setComment] = useState('')
   const [rating, setRating] = useState(0)
@@ -12,7 +14,7 @@ const ProductReview = ({ productId }) => {
     setLoading(true)
     setError(null)
     axios
-      .get(`http://localhost:3000/products/${productId}/reviews`)
+      .get(`${backendUrl}/products/${productId}/reviews`)
       .then((res) => setReviews(res.data))
       .catch((err) => setError('Failed to load reviews'))
       .finally(() => setLoading(false))
@@ -28,13 +30,13 @@ const ProductReview = ({ productId }) => {
     try {
       setLoading(true)
       setError(null)
-      await axios.post(`http://localhost:3000/products/${productId}/reviews`, {
+      await axios.post(`${backendUrl}/products/${productId}/reviews`, {
         comment,
         rating: Number(rating)
       })
 
       const updated = await axios.get(
-        `http://localhost:3000/products/${productId}/reviews`
+        `${backendUrl}/products/${productId}/reviews`
       )
       setReviews(updated.data)
       setComment('')
@@ -48,9 +50,7 @@ const ProductReview = ({ productId }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(
-        `http://localhost:3000/products/${productId}/reviews/${id}`
-      )
+      await axios.delete(`${backendUrl}/products/${productId}/reviews/${id}`)
       setReviews(reviews.filter((r) => r._id !== id))
     } catch (error) {
       alert('Failed to delete review')
