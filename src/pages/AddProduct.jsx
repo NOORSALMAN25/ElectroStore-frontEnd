@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+// import '../App.css'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const categories = [
@@ -43,14 +44,17 @@ const AddProduct = () => {
   return (
     <>
       <section className="booking-container">
-        <h2>Add New Product</h2>
-        <form onSubmit={handleSubmit}>
+        <h1 className="h1-edit-title">Add New Product</h1>
+        <form onSubmit={handleSubmit} className="add-product-form">
+          <label htmlFor="name">Product Name</label>
           <input
             type="text"
             ref={nameRef}
             placeholder="Product Name"
             required
           />
+
+          <label htmlFor="price">Price</label>
           <input
             type="number"
             ref={priceRef}
@@ -59,6 +63,8 @@ const AddProduct = () => {
             min="0"
             step="1"
           />
+
+          <label htmlFor="category">Category</label>
           <select ref={categoryRef} defaultValue={categories[0]} required>
             {categories.map((categorie) => (
               <option key={categorie} value={categorie}>
@@ -66,13 +72,18 @@ const AddProduct = () => {
               </option>
             ))}
           </select>
+
+          <label htmlFor="description">Description</label>
           <textarea
             ref={descriptionRef}
             placeholder="Description"
             required
           ></textarea>
+
+          <label htmlFor="image">Image URL</label>
           <input type="text" ref={imageRef} placeholder="Image URL" required />
-          <label>
+
+          <label className="availability-label" htmlFor="availability">
             <input
               type="checkbox"
               checked={availability}
@@ -81,7 +92,9 @@ const AddProduct = () => {
             Available
           </label>
           <Link to="/Products">
-            <button type="submit">Add Product</button>
+            <button type="submit" className="add-button">
+              Add Product
+            </button>
           </Link>
         </form>
       </section>
