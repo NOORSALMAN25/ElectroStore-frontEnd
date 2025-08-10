@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useState, useEffect, uN } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import ProductReview from '../components/ProductReview'
 import { Link } from 'react-router-dom'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const Product = ({ user }) => {
+  const navigate = useNavigate()
   const { id } = useParams()
   const [product, setProduct] = useState(null)
 
@@ -22,6 +23,15 @@ const Product = ({ user }) => {
   }, [id, backendUrl])
 
   const buttons_auth = () => {
+    const handleDelete = async () => {
+      try {
+        await axios.delete(`${backendUrl}/products/${id}`, product)
+        navigate('/Products')
+      } catch (error) {
+        console.error('Error updating product:', error)
+      }
+    }
+
     return (
       <>
         {user && user.role === 'admin' ? (
@@ -29,7 +39,7 @@ const Product = ({ user }) => {
             <Link to={`/Products/${id}/EditProduct`}>
               <button>Edit</button>
             </Link>
-            <Link to="/">
+            <Link to="/Products" onClick={handleDelete}>
               <button>Delete</button>
             </Link>
           </>

@@ -13,6 +13,16 @@ const Nav = ({ user, handleLogOut }) => {
 
         {user ? (
           <>
+            {user.role === 'admin' ? (
+              <>
+                <NavLink className="nav-item" to="/">
+                  Add Product
+                </NavLink>
+              </>
+            ) : (
+              <></>
+            )}
+
             <NavLink className="nav-item" to="/products">
               Products
             </NavLink>
