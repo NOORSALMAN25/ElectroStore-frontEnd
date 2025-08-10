@@ -6,15 +6,24 @@ import { Link } from 'react-router-dom'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const Product = ({ user }) => {
+
+
   const navigate = useNavigate()
+
   const { id } = useParams()
+  console.log(id)
+
   const [product, setProduct] = useState(null)
+  const [reviews, setReviews] = useState([])
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(`${backendUrl}/products/${id}`)
         setProduct(response.data)
+        const res = await axios.get(`${backendUrl}/products/${id}/reviews`)
+        console.log(res.data)
+        setReviews(res.data)
       } catch (error) {
         console.error('Error in fetching one product:', error)
       }
@@ -54,6 +63,17 @@ const Product = ({ user }) => {
     )
   }
 
+  // useEffect(() => {
+  //   if (id) return
+  //   setLoading(true)
+  //   setError(null)
+  //   const res = axios.get(`${backendUrl}/products/${id}/reviews`)
+  //   console.log(res.data)
+  //   // .then((res) => setReviews(res.data))
+  //   // .catch((err) => setError('Failed to load reviews'))
+  //   // .finally(() => setLoading(false))
+  // }, [])
+
   return (
     <div className="one-product-box">
       {product ? (
@@ -64,10 +84,19 @@ const Product = ({ user }) => {
             <h3>Price: ${product.price}</h3>
             <p>Category: {product.category}</p>
             <p>{product.description}</p>
+
+            
+
             <p>{buttons_auth()}</p>
+
           </div>
           <div>
-            <ProductReview />
+            <ProductReview
+              setReviews={setReviews}
+              reviews={reviews}
+              productId={id}
+              user={user}
+            />
           </div>
         </div>
       ) : (
