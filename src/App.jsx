@@ -9,9 +9,10 @@ import Products from './pages/Products'
 import Cart from './pages/Cart'
 import Orders from './pages/Orders'
 import Profile from './pages/Profile'
-import ProductDetails from './components/ProductDetails'
+import ProductCard from './components/ProductCard'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
+import Product from './pages/Product'
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -43,15 +44,13 @@ const App = () => {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/AddProduct" element={<AddProduct />} />
             <Route path="/Products" element={<Products />} />
-            <Route path="/Products/:id" element={<ProductDetails />} />
+            <Route path="/Products/:id" element={<Product />} />
             <Route path="/Cart" element={<Cart />} />
             <Route path="/Orders" element={<Orders />} />
             <Route path="/Profile" element={<Profile />} />
           </Routes>
         </main>
       </div>
-      
-
     </>
   )
 }

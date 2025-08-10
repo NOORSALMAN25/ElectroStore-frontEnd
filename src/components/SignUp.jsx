@@ -11,6 +11,7 @@ const SignUp = () => {
     password: '',
     confirmPassword: ''
   }
+
   const [formValues, setFormValues] = useState(initialState)
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value })
