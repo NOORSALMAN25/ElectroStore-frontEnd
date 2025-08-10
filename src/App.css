@@ -150,7 +150,6 @@ a {
   min-height: 80vh;
 }
 
-/* Dropdown styling */
 .search-bar {
   display: flex;
   justify-content: center;
@@ -190,4 +189,82 @@ a {
 
 .search-button:hover {
   background-color: #0056b3;
+}
+
+.edit-product-form {
+  max-width: 480px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.edit-product-form label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.edit-product-form input[type='text'],
+.edit-product-form input[type='number'],
+.edit-product-form textarea {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.edit-product-form textarea {
+  min-height: 80px;
+}
+
+.availability-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+.update-button,
+.details-button {
+  padding: 12px 18px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.3s ease;
+}
+
+.update-button:hover,
+.details-button:hover {
+  background-color: #0056b3;
+}
+
+.details-button {
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.edit-product-form button {
+  font-size: 1rem;
+}
+
+.h1-edit-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
