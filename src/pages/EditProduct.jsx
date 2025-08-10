@@ -84,6 +84,17 @@ const EditProduct = () => {
         placeholder="Image URL"
         required
       />
+      <label>
+        <input
+          type="checkbox"
+          name="availability"
+          checked={product.availability ?? false}
+          onChange={(e) =>
+            setProduct({ ...product, availability: e.target.checked })
+          }
+        />
+        Available
+      </label>
       <button type="submit">Update Product</button>
       {updated && (
         <Link to={`/Products/${id}`}>
