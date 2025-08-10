@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const Product = ({ user }) => {
-
-
   const navigate = useNavigate()
 
   const { id } = useParams()
@@ -63,17 +61,6 @@ const Product = ({ user }) => {
     )
   }
 
-  // useEffect(() => {
-  //   if (id) return
-  //   setLoading(true)
-  //   setError(null)
-  //   const res = axios.get(`${backendUrl}/products/${id}/reviews`)
-  //   console.log(res.data)
-  //   // .then((res) => setReviews(res.data))
-  //   // .catch((err) => setError('Failed to load reviews'))
-  //   // .finally(() => setLoading(false))
-  // }, [])
-
   return (
     <div className="one-product-box">
       {product ? (
@@ -84,11 +71,7 @@ const Product = ({ user }) => {
             <h3>Price: ${product.price}</h3>
             <p>Category: {product.category}</p>
             <p>{product.description}</p>
-
-            
-
             <p>{buttons_auth()}</p>
-
           </div>
           <div>
             <ProductReview
