@@ -1,24 +1,12 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-const ProductReview = ({ productId }) => {
+const ProductReview = ({ productId, user, reviews, setReviews }) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL
 
-  const [reviews, setReviews] = useState([])
   const [comment, setComment] = useState('')
   const [rating, setRating] = useState(0)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
-
-  useEffect(() => {
-    if (productId) return
-    setLoading(true)
-    setError(null)
-    axios
-      .get(`${backendUrl}/products/${productId}/reviews`)
-      .then((res) => setReviews(res.data))
-      .catch((err) => setError('Failed to load reviews'))
-      .finally(() => setLoading(false))
-  }, [productId])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -31,14 +19,16 @@ const ProductReview = ({ productId }) => {
       setLoading(true)
       setError(null)
       await axios.post(`${backendUrl}/products/${productId}/reviews`, {
-        comment,
-        rating: Number(rating)
+        comment: comment,
+        rating: Number(rating),
+        user: user.id
       })
 
-      const updated = await axios.get(
-        `${backendUrl}/products/${productId}/reviews`
-      )
-      setReviews(updated.data)
+      // const updated = await axios.get(
+      //   `${backendUrl}/products/${productId}/reviews`
+      // )
+
+      // setReviews(updated.data)
       setComment('')
       setRating(0)
     } catch (error) {
@@ -76,6 +66,7 @@ const ProductReview = ({ productId }) => {
             </header>
 
             <p>{rev.comment}</p>
+            {/* here should appear for the user only */}
             <button onClick={() => handleDelete(rev._id)}>Delete</button>
           </div>
         ))}
