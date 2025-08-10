@@ -33,15 +33,15 @@ const Product = ({ user }) => {
             <p>{product.description}</p>
             {user && user.role === 'admin' ? (
               <>
-                <Link to={`/Products/${id}/edit`}>
+                <Link to={``}>
                   <button>Edit</button>
                 </Link>
-                <Link to={`/Products/${id}/delete`}>
+                <Link to={``}>
                   <button>Delete</button>
                 </Link>
               </>
             ) : (
-              <Link to="/Orders">
+              <Link to="">
                 <button>Add to Cart</button>
               </Link>
             )}

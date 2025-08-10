@@ -40,7 +40,7 @@ const App = () => {
         <Nav user={user} handleLogOut={handleLogOut} />
         <main>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home user={user} />} />
             <Route path="/login" element={<Login setUser={setUser} />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/AddProduct" element={<AddProduct />} />

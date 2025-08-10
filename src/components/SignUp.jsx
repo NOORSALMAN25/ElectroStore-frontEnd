@@ -21,7 +21,7 @@ const SignUp = () => {
     e.preventDefault()
     await RegisterUser(formValues)
     setFormValues(initialState)
-    navigate('/signin')
+    navigate('/login')
   }
 
   return (
