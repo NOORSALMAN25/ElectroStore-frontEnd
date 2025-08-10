@@ -28,10 +28,6 @@ const Nav = ({ user, handleLogOut }) => {
           </>
         ) : (
           <>
-            {/* this NavLink need to be removed it is just here for testing */}
-            <NavLink className="nav-item" to="/products">
-              Products
-            </NavLink>
             <NavLink className="nav-item" to="/login">
               Sign In
             </NavLink>

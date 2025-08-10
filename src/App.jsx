@@ -13,7 +13,7 @@ import ProductCard from './components/ProductCard'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Product from './pages/Product'
-
+import EditProduct from './pages/EditProduct'
 const App = () => {
   const [user, setUser] = useState(null)
 
@@ -49,6 +49,7 @@ const App = () => {
             <Route path="/Cart" element={<Cart />} />
             <Route path="/Orders" element={<Orders />} />
             <Route path="/Profile" element={<Profile />} />
+            <Route path="/Products/:id/EditProduct" element={<EditProduct />} />
           </Routes>
         </main>
       </div>
