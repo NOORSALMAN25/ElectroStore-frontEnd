@@ -1,4 +1,3 @@
-import ProductReview from './ProductReview'
 import { Link } from 'react-router-dom'
 
 const ProductCard = ({ product }) => {
@@ -12,7 +11,6 @@ const ProductCard = ({ product }) => {
           <p>Price: ${product.price.toFixed(2)}</p>
         </div>
       </Link>
-      <ProductReview />
     </>
   )
 }

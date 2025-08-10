@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import ProductReview from '../components/ProductReview'
+
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const Product = () => {
@@ -29,6 +31,10 @@ const Product = () => {
             <h3>Price: ${product.price}</h3>
             <p>Category: {product.category}</p>
             <p>{product.description}</p>
+            if (condition) {}else{}
+          </div>
+          <div>
+            <ProductReview />
           </div>
         </div>
       ) : (
