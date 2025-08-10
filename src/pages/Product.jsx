@@ -1,11 +1,15 @@
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useState, useEffect, uN } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import ProductReview from '../components/ProductReview'
-
+import { Link } from 'react-router-dom'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const Product = ({ user }) => {
+
+
+  const navigate = useNavigate()
+
   const { id } = useParams()
   console.log(id)
 
@@ -25,7 +29,39 @@ const Product = ({ user }) => {
       }
     }
     fetchProduct()
-  }, [])
+  }, [id, backendUrl])
+
+  const buttons_auth = () => {
+    const handleDelete = async () => {
+      try {
+        await axios.delete(`${backendUrl}/products/${id}`, product)
+        navigate('/Products')
+      } catch (error) {
+        console.error('Error updating product:', error)
+      }
+    }
+
+    return (
+      <>
+        {user && user.role === 'admin' ? (
+          <>
+            <Link to={`/Products/${id}/EditProduct`}>
+              <button>Edit</button>
+            </Link>
+            <Link to="/Products" onClick={handleDelete}>
+              <button>Delete</button>
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to="">
+              <button>Add to Cart</button>
+            </Link>
+          </>
+        )}
+      </>
+    )
+  }
 
   // useEffect(() => {
   //   if (id) return
@@ -48,7 +84,11 @@ const Product = ({ user }) => {
             <h3>Price: ${product.price}</h3>
             <p>Category: {product.category}</p>
             <p>{product.description}</p>
-            {/* if (condition) {}else{} */}
+
+            
+
+            <p>{buttons_auth()}</p>
+
           </div>
           <div>
             <ProductReview
