@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import ProductCard from '../components/ProductCard'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
-const Products = () => {
+const Products = ({ user }) => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {

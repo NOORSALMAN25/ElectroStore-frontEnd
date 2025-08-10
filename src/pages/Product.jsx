@@ -5,7 +5,7 @@ import ProductReview from '../components/ProductReview'
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
-const Product = () => {
+const Product = ({ user }) => {
   const { id } = useParams()
   const [product, setProduct] = useState(null)
 
@@ -31,7 +31,20 @@ const Product = () => {
             <h3>Price: ${product.price}</h3>
             <p>Category: {product.category}</p>
             <p>{product.description}</p>
-            if (condition) {}else{}
+            {user && user.role === 'admin' ? (
+              <>
+                <Link to={`/Products/${id}/edit`}>
+                  <button>Edit</button>
+                </Link>
+                <Link to={`/Products/${id}/delete`}>
+                  <button>Delete</button>
+                </Link>
+              </>
+            ) : (
+              <Link to="/Orders">
+                <button>Add to Cart</button>
+              </Link>
+            )}
           </div>
           <div>
             <ProductReview />
