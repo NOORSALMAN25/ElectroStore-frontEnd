@@ -25,8 +25,11 @@ const Nav = ({ user, handleLogOut }) => {
           <>
             {user.role === 'admin' ? (
               <>
-                <NavLink className="nav-item" to="/">
+
+                <NavLink className="nav-item" to="/AddProduct">
                   {t('addProduct')}
+
+             
                 </NavLink>
               </>
             ) : (
