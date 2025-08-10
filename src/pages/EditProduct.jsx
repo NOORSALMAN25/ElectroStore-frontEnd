@@ -44,64 +44,78 @@ const EditProduct = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="name"
-        value={product.name}
-        onChange={handleChange}
-        placeholder="Name"
-        required
-      />
-      <input
-        type="number"
-        name="price"
-        value={product.price}
-        onChange={handleChange}
-        placeholder="Price"
-        required
-      />
-      <input
-        type="text"
-        name="category"
-        value={product.category}
-        onChange={handleChange}
-        placeholder="Category"
-        required
-      />
-      <textarea
-        name="description"
-        value={product.description}
-        onChange={handleChange}
-        placeholder="Description"
-        required
-      />
-      <input
-        type="text"
-        name="image"
-        value={product.image}
-        onChange={handleChange}
-        placeholder="Image URL"
-        required
-      />
-      <label>
+    <>
+      <h1 className="h1-edit-title">Edit Product</h1>
+      <form className="edit-product-form" onSubmit={handleSubmit}>
+        <label htmlFor="name">Name</label>
         <input
-          type="checkbox"
-          name="availability"
-          checked={product.availability ?? false}
-          onChange={(e) =>
-            setProduct({ ...product, availability: e.target.checked })
-          }
+          type="text"
+          name="name"
+          value={product.name}
+          onChange={handleChange}
+          placeholder="Name"
+          required
         />
-        Available
-      </label>
-      <button type="submit">Update Product</button>
-      {updated && (
-        <Link to={`/Products/${id}`}>
-          <button type="submit">Go to Product Details</button>
-        </Link>
-      )}
-    </form>
+
+        <label htmlFor="price">Price</label>
+        <input
+          type="number"
+          name="price"
+          value={product.price}
+          onChange={handleChange}
+          placeholder="Price"
+          required
+        />
+        <label htmlFor="category">Category</label>
+        <input
+          type="text"
+          name="category"
+          value={product.category}
+          onChange={handleChange}
+          placeholder="Category"
+          required
+        />
+
+        <label htmlFor="description">Description</label>
+        <textarea
+          name="description"
+          value={product.description}
+          onChange={handleChange}
+          placeholder="Description"
+          required
+        />
+        <label htmlFor="image">Image URL</label>
+        <input
+          type="text"
+          name="image"
+          value={product.image}
+          onChange={handleChange}
+          placeholder="Image URL"
+          required
+        />
+        <label className="availability-label" htmlFor="availability">
+          <input
+            type="checkbox"
+            name="availability"
+            checked={product.availability}
+            onChange={(e) =>
+              setProduct({ ...product, availability: e.target.checked })
+            }
+          />
+          Available
+        </label>
+        <button type="submit" className="update-button">
+          Update Product
+        </button>
+        {updated && (
+          <Link to={`/Products/${id}`}>
+            <button type="submit" className="details-button">
+              Go to Product Details
+            </button>
+          </Link>
+        )}
+      </form>
+    </>
   )
 }
 
