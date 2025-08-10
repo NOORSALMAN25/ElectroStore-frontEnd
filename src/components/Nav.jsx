@@ -1,5 +1,13 @@
+import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { NavLink, Link } from 'react-router-dom'
 const Nav = ({ user, handleLogOut }) => {
+  const { t, i18n } = useTranslation()
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng)
+  }
+
   return (
     <nav className="navbar">
       <NavLink to="/">
@@ -7,8 +15,10 @@ const Nav = ({ user, handleLogOut }) => {
       </NavLink>
 
       <div className="nav-links">
+        <button onClick={() => changeLanguage('en')}>EN</button>
+        <button onClick={() => changeLanguage('ar')}>AR</button>
         <NavLink className="nav-item" to="/">
-          Home
+          {t('home')}
         </NavLink>
 
         {user ? (
@@ -16,7 +26,7 @@ const Nav = ({ user, handleLogOut }) => {
             {user.role === 'admin' ? (
               <>
                 <NavLink className="nav-item" to="/AddProduct">
-                  Add Product
+                  {t('addProduct')}
                 </NavLink>
               </>
             ) : (
@@ -24,25 +34,25 @@ const Nav = ({ user, handleLogOut }) => {
             )}
 
             <NavLink className="nav-item" to="/products">
-              Products
+              {t('products')}
             </NavLink>
             <NavLink className="nav-item" to="/order">
-              Cart
+              {t('cart')}
             </NavLink>
             <NavLink className="nav-item" to="/profile">
-              Profile
+              {t('profile')}
             </NavLink>
             <Link className="nav-item" onClick={handleLogOut} to="/">
-              Sign Out
+              {t('signout')}
             </Link>
           </>
         ) : (
           <>
             <NavLink className="nav-item" to="/login">
-              Sign In
+              {t('signin')}
             </NavLink>
             <NavLink className="nav-item" to="/signup">
-              Register
+              {t('signup')}
             </NavLink>
           </>
         )}
