@@ -66,9 +66,10 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
             </header>
 
             <p>{rev.comment}</p>
-            {user ? (
+            {user && rev.user === user.id && (
               <button onClick={() => handleDelete(rev._id)}>Delete</button>
-            ) : null}
+            )}
+
             {/* <button onClick={() => handleDelete(rev._id)}>Delete</button> */}
           </div>
         ))}
