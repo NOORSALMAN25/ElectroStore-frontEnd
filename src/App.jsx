@@ -7,13 +7,12 @@ import Home from './pages/Home'
 import AddProduct from './pages/AddProduct'
 import Products from './pages/Products'
 import Cart from './pages/Cart'
-import Orders from './pages/Orders'
 import Profile from './pages/Profile'
-import ProductCard from './components/ProductCard'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Product from './pages/Product'
 import EditProduct from './pages/EditProduct'
+
 const App = () => {
   const [user, setUser] = useState(null)
 
@@ -50,7 +49,6 @@ const App = () => {
               element={<Product user={user} />}
             />
             <Route path="/Cart" element={<Cart />} />
-            <Route path="/Orders" element={<Orders />} />
             <Route path="/Profile" element={<Profile user={user} />} />
             <Route
               path="/Products/:productId/EditProduct"

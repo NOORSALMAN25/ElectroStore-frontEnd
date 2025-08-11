@@ -7,9 +7,7 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const Product = ({ user }) => {
   const navigate = useNavigate()
-
   const { productId } = useParams()
-
   const [product, setProduct] = useState(null)
   const [reviews, setReviews] = useState([])
 
@@ -18,9 +16,6 @@ const Product = ({ user }) => {
       try {
         const response = await axios.get(`${backendUrl}/products/${productId}`)
         setProduct(response.data)
-        console.log(
-          response.data ? 'Product fetched successfully' : 'No product found'
-        )
         const res = await axios.get(
           `${backendUrl}/products/${productId}/reviews`
         )
@@ -30,18 +25,98 @@ const Product = ({ user }) => {
       }
     }
     fetchProduct()
-  }, [])
+  }, [productId])
 
-  const buttons_auth = () => {
-    const handleDelete = async () => {
-      try {
-        await axios.delete(`${backendUrl}/products/${productId}`, product)
-        navigate('/Products')
-      } catch (error) {
-        console.error('Error updating product:', error)
-      }
+  const addToCart = async () => {
+    if (!user) {
+      navigate('/login')
+      return
     }
 
+    try {
+      // geting the ongoing order
+      const ordersResponse = await axios.get(`${backendUrl}/orders`)
+      const userOngoingOrder = ordersResponse.data.find(
+        (order) => order.user === user._id && order.status === 'ongoing'
+      )
+
+      //  product already in the order
+      if (userOngoingOrder) {
+        const existingItem = userOngoingOrder.items.find(
+          (item) => item.product === productId
+        )
+
+        // Update quantity
+        if (existingItem) {
+          const updatedItems = userOngoingOrder.items.map((item) =>
+            item.product === productId
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          )
+
+          const newTotal = updatedItems.reduce(
+            (sum, item) => sum + item.price * item.quantity,
+            0
+          )
+
+          await axios.put(`${backendUrl}/orders/${userOngoingOrder._id}`, {
+            ...userOngoingOrder,
+            items: updatedItems,
+            total: newTotal
+          })
+        } else {
+          // Add new item to existing order
+          const newItem = {
+            product: productId,
+            quantity: 1,
+            price: product.price
+          }
+
+          const updatedItems = [...userOngoingOrder.items, newItem]
+          const newTotal = updatedItems.reduce(
+            (sum, item) => sum + item.price * item.quantity,
+            0
+          )
+
+          await axios.put(`${backendUrl}/orders/${userOngoingOrder._id}`, {
+            ...userOngoingOrder,
+            items: updatedItems,
+            total: newTotal
+          })
+        }
+      } else {
+        // new order
+        const newOrder = {
+          total: product.price,
+          items: [
+            {
+              product: productId,
+              quantity: 1,
+              price: product.price
+            }
+          ],
+          user: user._id
+        }
+
+        await axios.post(`${backendUrl}/orders`, newOrder)
+      }
+
+      navigate('/cart')
+    } catch (error) {
+      console.error('Error adding to cart:', error)
+    }
+  }
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`${backendUrl}/products/${productId}`, product)
+      navigate('/products')
+    } catch (error) {
+      console.error('Error updating product:', error)
+    }
+  }
+
+  const buttons_auth = () => {
     return (
       <>
         {user && user.role === 'admin' ? (
@@ -50,13 +125,13 @@ const Product = ({ user }) => {
               <button>Edit</button>
             </Link>
             <Link to="/Products" onClick={handleDelete}>
-              <button>Delete</button>
+              <button onClick={handleDelete}>Delete</button>
             </Link>
           </>
         ) : (
           <>
             <Link to="">
-              <button>Add to Cart</button>
+              <button onClick={addToCart}>Add to Cart</button>
             </Link>
           </>
         )}
