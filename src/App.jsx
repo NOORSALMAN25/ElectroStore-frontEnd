@@ -55,6 +55,7 @@ const App = () => {
               element={<EditProduct />}
             />
             <Route path="/checkout" element={<CheckOut />} />
+
           </Routes>
         </main>
       </div>
