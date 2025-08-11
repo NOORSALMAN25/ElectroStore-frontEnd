@@ -12,7 +12,7 @@ import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Product from './pages/Product'
 import EditProduct from './pages/EditProduct'
-
+import CheckOut from './components/CheckOut'
 const App = () => {
   const [user, setUser] = useState(null)
 
@@ -54,6 +54,7 @@ const App = () => {
               path="/Products/:productId/EditProduct"
               element={<EditProduct />}
             />
+            <Route path="/checkout" element={<CheckOut />} />
           </Routes>
         </main>
       </div>

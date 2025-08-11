@@ -25,8 +25,8 @@ const Product = ({ user }) => {
       }
     }
     fetchProduct()
-  }, [productId])
-
+  }, [])
+  // adding a product work in all cases
   const addToCart = async () => {
     if (!user) {
       navigate('/login')
@@ -34,42 +34,41 @@ const Product = ({ user }) => {
     }
 
     try {
-      // geting the ongoing order
-      const ordersResponse = await axios.get(`${backendUrl}/orders`)
-      const userOngoingOrder = ordersResponse.data.find(
-        (order) => order.user === user._id && order.status === 'ongoing'
-      )
+      const ordersResponse = await axios.get(`${backendUrl}/orders`) // tested
 
-      //  product already in the order
+      const userOngoingOrder = ordersResponse.data.find(
+        (order) => order.user === user.id && order.status === 'ongoing'
+      ) // tested
+
       if (userOngoingOrder) {
         const existingItem = userOngoingOrder.items.find(
           (item) => item.product === productId
-        )
+        ) // tested
 
-        // Update quantity
         if (existingItem) {
           const updatedItems = userOngoingOrder.items.map((item) =>
             item.product === productId
               ? { ...item, quantity: item.quantity + 1 }
               : item
-          )
+          ) //tested
 
           const newTotal = updatedItems.reduce(
             (sum, item) => sum + item.price * item.quantity,
             0
-          )
+          ) //tested
 
           await axios.put(`${backendUrl}/orders/${userOngoingOrder._id}`, {
             ...userOngoingOrder,
             items: updatedItems,
             total: newTotal
-          })
+          }) // tested
         } else {
-          // Add new item to existing order
           const newItem = {
             product: productId,
+            name: product.name,
             quantity: 1,
-            price: product.price
+            price: product.price,
+            image: product.image
           }
 
           const updatedItems = [...userOngoingOrder.items, newItem]
@@ -85,19 +84,20 @@ const Product = ({ user }) => {
           })
         }
       } else {
-        // new order
         const newOrder = {
           total: product.price,
           items: [
             {
               product: productId,
+              name: product.name,
               quantity: 1,
-              price: product.price
+              price: product.price,
+              image: product.imag
             }
           ],
-          user: user._id
+          user: user.id,
+          status: 'ongoing'
         }
-
         await axios.post(`${backendUrl}/orders`, newOrder)
       }
 
@@ -124,15 +124,11 @@ const Product = ({ user }) => {
             <Link to={`/Products/${productId}/EditProduct`}>
               <button>Edit</button>
             </Link>
-            <Link to="/Products" onClick={handleDelete}>
-              <button onClick={handleDelete}>Delete</button>
-            </Link>
+            <button onClick={handleDelete}>Delete</button>
           </>
         ) : (
           <>
-            <Link to="">
-              <button onClick={addToCart}>Add to Cart</button>
-            </Link>
+            <button onClick={addToCart}>Add to Cart</button>
           </>
         )}
       </>
