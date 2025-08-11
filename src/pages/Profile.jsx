@@ -46,8 +46,49 @@ const Profile = ({ user }) => {
   if (error) return <p>error:{error}</p>
 
   return (
-    <>
-      <div>
+    <div>
+      {editing ? (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault()
+            handleSave()
+          }}
+        >
+          <label>
+            Name:{' '}
+            <input value={name} onChange={(e) => setName(e.target.value)} />
+          </label>
+          <br />
+          <label>
+            Email:{' '}
+            <input value={email} onChange={(e) => setEmail(e.target.value)} />
+          </label>
+
+          <br />
+          <button type="submit">Save</button>
+          <button type="button" onClick={() => setEditing(false)}>
+            Cancel
+          </button>
+        </form>
+      ) : (
+        <>
+          <h3>User Details</h3>
+          <h5>Name:{user.name}</h5>
+          <h5>Email:{user.email}</h5>
+          <button onClick={() => setEditing(true)}>Edit</button>
+          <br />
+        </>
+      )}
+    </div>
+  )
+}
+
+export default Profile
+
+//at the profile will be only the user and role and email
+
+{
+  /* <div>
         {user ? (
           <>
             <p>name:{user.name}</p>
@@ -60,11 +101,5 @@ const Profile = ({ user }) => {
             <p>Please create an account to accesses your profile </p>
           </>
         )}
-      </div>
-    </>
-  )
+      </div> */
 }
-
-export default Profile
-
-//at the profile will be only the user and role and email
