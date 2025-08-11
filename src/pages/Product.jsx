@@ -8,8 +8,7 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL
 const Product = ({ user }) => {
   const navigate = useNavigate()
 
-  const { id } = useParams()
-  console.log(id)
+  const { productId } = useParams()
 
   const [product, setProduct] = useState(null)
   const [reviews, setReviews] = useState([])
@@ -17,22 +16,26 @@ const Product = ({ user }) => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`${backendUrl}/products/${id}`)
+        const response = await axios.get(`${backendUrl}/products/${productId}`)
         setProduct(response.data)
-        const res = await axios.get(`${backendUrl}/products/${id}/reviews`)
-        console.log(res.data)
+        console.log(
+          response.data ? 'Product fetched successfully' : 'No product found'
+        )
+        const res = await axios.get(
+          `${backendUrl}/products/${productId}/reviews`
+        )
         setReviews(res.data)
       } catch (error) {
         console.error('Error in fetching one product:', error)
       }
     }
     fetchProduct()
-  }, [id, backendUrl])
+  }, [productId, backendUrl])
 
   const buttons_auth = () => {
     const handleDelete = async () => {
       try {
-        await axios.delete(`${backendUrl}/products/${id}`, product)
+        await axios.delete(`${backendUrl}/products/${productId}`, product)
         navigate('/Products')
       } catch (error) {
         console.error('Error updating product:', error)
@@ -43,7 +46,7 @@ const Product = ({ user }) => {
       <>
         {user && user.role === 'admin' ? (
           <>
-            <Link to={`/Products/${id}/EditProduct`}>
+            <Link to={`/Products/${productId}/EditProduct`}>
               <button>Edit</button>
             </Link>
             <Link to="/Products" onClick={handleDelete}>
@@ -77,7 +80,7 @@ const Product = ({ user }) => {
             <ProductReview
               setReviews={setReviews}
               reviews={reviews}
-              productId={id}
+              productId={productId}
               user={user}
             />
           </div>
