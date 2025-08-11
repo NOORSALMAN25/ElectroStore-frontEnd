@@ -1,6 +1,6 @@
-import { useRef, useState, sena } from 'react'
+import { useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const categories = [
@@ -24,6 +24,7 @@ const initialFormValues = {
 }
 
 const AddProduct = () => {
+  const navigate = useNavigate()
   const nameRef = useRef(null)
   const priceRef = useRef(null)
   const categoryRef = useRef(null)
@@ -42,12 +43,14 @@ const AddProduct = () => {
       availability: availability
     }
     const res = await axios.post(`${backendUrl}/products`, data)
+
     nameRef.current.value = ''
     priceRef.current.value = 0
     categoryRef.current.value = ''
     descriptionRef.current.value = ''
     imageRef.current.value = ''
     setAvailability(true)
+    navigate('/products')
   }
   return (
     <>
