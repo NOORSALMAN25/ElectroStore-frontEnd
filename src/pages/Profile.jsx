@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import User from '../services/api'
+import Client from '../services/api'
 
 const Profile = ({ user }) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL
@@ -23,7 +23,7 @@ const Profile = ({ user }) => {
       return
     }
 
-    User.get(`${backendUrl}/profile/${user.id}`)
+    Client.get(`${backendUrl}/profile/${user.id}`)
       .then((res) => {
         setProfile(res.data)
         setName(res.data.name)
@@ -37,7 +37,7 @@ const Profile = ({ user }) => {
   }, [user?.id, backendUrl])
 
   const handleSave = () => {
-    User.put(`${backendUrl}/profile/${user.id}`, { name, email })
+    Client.put(`${backendUrl}/profile/${user.id}`, { name, email })
       .then((res) => {
         setProfile(res.data)
         setEditing(false)
@@ -50,7 +50,7 @@ const Profile = ({ user }) => {
   const handlePasswordChange = (e) => {
     e.preventDefault()
     setPasswordMessage('')
-    User.put(`${backendUrl}/profile/${user.id}`, {
+    Client.put(`${backendUrl}/profile/${user.id}/password`, {
       oldPassword,
       newPassword
     })
