@@ -1,7 +1,6 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, sena } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-// import '../App.css'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const categories = [
@@ -14,6 +13,15 @@ const categories = [
   'cameras',
   'accessories'
 ]
+
+const initialFormValues = {
+  name: '',
+  price: 0,
+  category: categories[0],
+  description: '',
+  image: '',
+  availability: true
+}
 
 const AddProduct = () => {
   const nameRef = useRef(null)
@@ -91,11 +99,9 @@ const AddProduct = () => {
             />
             Available
           </label>
-          <Link to="/Products">
-            <button type="submit" className="add-button">
-              Add Product
-            </button>
-          </Link>
+          <button type="submit" className="add-button">
+            Add Product
+          </button>
         </form>
       </section>
     </>

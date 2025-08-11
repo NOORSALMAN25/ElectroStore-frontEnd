@@ -24,11 +24,6 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
         user: user.id
       })
 
-      // const updated = await axios.get(
-      //   `${backendUrl}/products/${productId}/reviews`
-      // )
-
-      // setReviews(updated.data)
       setComment('')
       setRating(0)
     } catch (error) {
@@ -69,8 +64,6 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
             {user && rev.user === user.id && (
               <button onClick={() => handleDelete(rev._id)}>Delete</button>
             )}
-
-            {/* <button onClick={() => handleDelete(rev._id)}>Delete</button> */}
           </div>
         ))}
       </div>
