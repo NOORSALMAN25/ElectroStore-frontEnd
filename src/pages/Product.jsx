@@ -1,4 +1,4 @@
-import { useState, useEffect, uN } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import ProductReview from '../components/ProductReview'
@@ -30,7 +30,7 @@ const Product = ({ user }) => {
       }
     }
     fetchProduct()
-  }, [productId, backendUrl])
+  }, [])
 
   const buttons_auth = () => {
     const handleDelete = async () => {
