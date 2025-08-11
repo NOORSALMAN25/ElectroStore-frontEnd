@@ -113,6 +113,37 @@ const Profile = ({ user }) => {
           <h5>Email: {profile.email}</h5>
           <h5>Role: {profile.role}</h5>
           <button onClick={() => setEditing(true)}>Edit</button>
+
+          <br />
+          <button onClick={() => setShowPasswordForm(!showPasswordForm)}>
+            {showPasswordForm ? 'Cancle password Change' : 'change password'}
+          </button>
+          {showPasswordForm && (
+            <form onSubmit={handlePasswordChange}>
+              <lable>
+                Old password :{''}
+                <input
+                  type="password"
+                  value={oldPassword}
+                  onChange={(e) => setOldPassword(e.target.value)}
+                  required
+                />
+              </lable>
+              <br />
+              <lable>
+                New password :{''}
+                <input
+                  type="password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  required
+                />
+              </lable>
+              <br />
+              <button type="submit">Update Password</button>
+              {passwordMessage && <p>{passwordMessage}</p>}
+            </form>
+          )}
         </>
       )}
     </div>
