@@ -15,6 +15,7 @@ const Profile = ({ user }) => {
   const [oldPassword, setOldPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [passwordMessage, setPasswordMessage] = useState('')
+  const [showPasswordForm, setShowPasswordForm] = useState(false)
 
   useEffect(() => {
     if (!user?.id) {
@@ -43,6 +44,29 @@ const Profile = ({ user }) => {
       })
       .catch(() => {
         alert('Failed to update user information')
+      })
+  }
+
+  const handlePasswordChange = (e) => {
+    e.preventDefault()
+    setPasswordMessage('')
+    User.put(`${backendUrl}/profile/${user.id}`, {
+      oldPassword,
+      newPassword
+    })
+      .then((res) => {
+        setPasswordMessage(res.data.status)
+        setOldPassword('')
+        setNewPassword('')
+        setShowPasswordForm(false)
+      })
+
+      .catch((err) => {
+        if (err.response && err.response.data && err.response.data.msg) {
+          setPasswordMessage(err.response.data.msg)
+        } else {
+          setPasswordMessage('Failed to update password')
+        }
       })
   }
 
