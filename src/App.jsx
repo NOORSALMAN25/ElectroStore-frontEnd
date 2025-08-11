@@ -48,14 +48,13 @@ const App = () => {
               path="/Products/:productId"
               element={<Product user={user} />}
             />
-            <Route path="/Cart" element={<Cart />} />
+            <Route path="/Cart" element={<Cart user={user} />} />
             <Route path="/Profile" element={<Profile user={user} />} />
             <Route
               path="/Products/:productId/EditProduct"
               element={<EditProduct />}
             />
             <Route path="/checkout" element={<CheckOut />} />
-
           </Routes>
         </main>
       </div>

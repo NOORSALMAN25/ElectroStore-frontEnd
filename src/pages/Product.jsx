@@ -26,6 +26,7 @@ const Product = ({ user }) => {
     }
     fetchProduct()
   }, [])
+
   // adding a product work in all cases
   const addToCart = async () => {
     if (!user) {
@@ -36,9 +37,12 @@ const Product = ({ user }) => {
     try {
       const ordersResponse = await axios.get(`${backendUrl}/orders`) // tested
 
-      const userOngoingOrder = ordersResponse.data.find(
+      const userOngoingOrders = ordersResponse.data.filter(
         (order) => order.user === user.id && order.status === 'ongoing'
-      ) // tested
+      )
+
+      const userOngoingOrder =
+        userOngoingOrders.length > 0 ? userOngoingOrders[0] : null
 
       if (userOngoingOrder) {
         const existingItem = userOngoingOrder.items.find(

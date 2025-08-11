@@ -269,7 +269,6 @@ a {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-/* not working yet */
 .add-product-form {
   max-width: 480px;
   margin: 2rem auto;
@@ -335,4 +334,5 @@ a {
 .add-button:hover {
   background-color: #0056b3;
 }
-/* untill here  */
+
+/* for the cart */
