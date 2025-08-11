@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const EditProduct = () => {
-  const { id } = useParams()
+  const { productId } = useParams()
   const [product, setProduct] = useState({
     name: '',
     price: '',
@@ -19,14 +19,14 @@ const EditProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`${backendUrl}/products/${id}`)
+        const response = await axios.get(`${backendUrl}/products/${productId}`)
         setProduct(response.data)
       } catch (error) {
         console.error('Error fetching product:', error)
       }
     }
     fetchProduct()
-  }, [id])
+  }, [productId])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -36,7 +36,7 @@ const EditProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await axios.put(`${backendUrl}/products/${id}`, product)
+      await axios.put(`${backendUrl}/products/${productId}`, product)
       setUpdated(true)
     } catch (error) {
       console.error('Error updating product:', error)
@@ -108,7 +108,7 @@ const EditProduct = () => {
           Update Product
         </button>
         {updated && (
-          <Link to={`/Products/${id}`}>
+          <Link to={`/Products/${productId}`}>
             <button type="submit" className="details-button">
               Go to Product Details
             </button>

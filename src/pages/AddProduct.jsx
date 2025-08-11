@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
-// import '../App.css'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const categories = [
@@ -15,7 +14,17 @@ const categories = [
   'accessories'
 ]
 
+const initialFormValues = {
+  name: '',
+  price: 0,
+  category: categories[0],
+  description: '',
+  image: '',
+  availability: true
+}
+
 const AddProduct = () => {
+  const navigate = useNavigate()
   const nameRef = useRef(null)
   const priceRef = useRef(null)
   const categoryRef = useRef(null)
@@ -34,12 +43,14 @@ const AddProduct = () => {
       availability: availability
     }
     const res = await axios.post(`${backendUrl}/products`, data)
+
     nameRef.current.value = ''
     priceRef.current.value = 0
     categoryRef.current.value = ''
     descriptionRef.current.value = ''
     imageRef.current.value = ''
     setAvailability(true)
+    navigate('/products')
   }
   return (
     <>
@@ -91,11 +102,9 @@ const AddProduct = () => {
             />
             Available
           </label>
-          <Link to="/Products">
-            <button type="submit" className="add-button">
-              Add Product
-            </button>
-          </Link>
+          <button type="submit" className="add-button">
+            Add Product
+          </button>
         </form>
       </section>
     </>
