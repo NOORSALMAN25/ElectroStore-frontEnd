@@ -2,48 +2,61 @@ import { useEffect, useState } from 'react'
 import User from '../services/api'
 
 const Profile = ({ user }) => {
-  const [userr, setUserr] = useState(null)
+  const backendUrl = import.meta.env.VITE_BACKEND_URL
+
+  const [profile, setProfile] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [editing, setEditing] = useState(false)
-  const [showPasswordForm, setShowPasswordForm] = useState(false)
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+
   const [oldPassword, setOldPassword] = useState('')
-  const [NewPassword, setNewPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
   const [passwordMessage, setPasswordMessage] = useState('')
 
   useEffect(() => {
-    console.log(user.id)
+    if (!user?.id) {
+      setLoading(false)
+      return
+    }
 
-    if (!user.id)
-      return User.get(`/profile/${user.id}`)
-        .then((res) => {
-          setUserr(res.data)
-          setName(res.data.name)
-          setEmail(res.data.email)
-          setLoading(false)
-        })
-        .catch((err) => {
-          setError(err.message)
-          setLoading(false)
-        })
-  }, [user.id])
-
-  const handleSave = () => {
-    User.put(`/profile/${user.id}`, { name, email })
+    User.get(`${backendUrl}/profile/${user.id}`)
       .then((res) => {
-        setUserr(res.data)
-        setEditing(false)
+        setProfile(res.data)
+        setName(res.data.name)
+        setEmail(res.data.email)
+        setLoading(false)
       })
       .catch((err) => {
-        alert(`failed to update user information`)
+        setError(err.message)
+        setLoading(false)
+      })
+  }, [user?.id, backendUrl])
+
+  const handleSave = () => {
+    User.put(`${backendUrl}/profile/${user.id}`, { name, email })
+      .then((res) => {
+        setProfile(res.data)
+        setEditing(false)
+      })
+      .catch(() => {
+        alert('Failed to update user information')
       })
   }
 
-  if (loading) return <P>loading...</P>
-  if (error) return <p>error:{error}</p>
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error: {error}</p>
+
+  if (!profile) {
+    return (
+      <div>
+        <h2>You don't have an account</h2>
+        <p>Please create an account to access your profile.</p>
+      </div>
+    )
+  }
 
   return (
     <div>
@@ -63,7 +76,6 @@ const Profile = ({ user }) => {
             Email:{' '}
             <input value={email} onChange={(e) => setEmail(e.target.value)} />
           </label>
-
           <br />
           <button type="submit">Save</button>
           <button type="button" onClick={() => setEditing(false)}>
@@ -73,10 +85,10 @@ const Profile = ({ user }) => {
       ) : (
         <>
           <h3>User Details</h3>
-          <h5>Name:{user.name}</h5>
-          <h5>Email:{user.email}</h5>
+          <h5>Name: {profile.name}</h5>
+          <h5>Email: {profile.email}</h5>
+          <h5>Role: {profile.role}</h5>
           <button onClick={() => setEditing(true)}>Edit</button>
-          <br />
         </>
       )}
     </div>
@@ -86,20 +98,3 @@ const Profile = ({ user }) => {
 export default Profile
 
 //at the profile will be only the user and role and email
-
-{
-  /* <div>
-        {user ? (
-          <>
-            <p>name:{user.name}</p>
-            <p>email:{user.email}</p>
-            <p>role:{user.role}</p>
-          </>
-        ) : (
-          <>
-            <h2>You Don't have an account</h2>
-            <p>Please create an account to accesses your profile </p>
-          </>
-        )}
-      </div> */
-}
