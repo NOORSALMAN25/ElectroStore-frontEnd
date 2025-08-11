@@ -84,36 +84,57 @@ const Cart = ({ user }) => {
   if (!cart || cart.items.length === 0) return <p>Your cart is empty.</p>
 
   return (
-    <div>
-      <h2>Your Cart</h2>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+    <section className="cart-wrapper">
+      <h1 className="cart-heading">Shopping Cart</h1>
+      <ul className="cart-list">
         {cart.items.map((item) => (
-          <li key={item._id} style={{ marginBottom: 20 }}>
-            <img src={item.image} alt={item.name} width={100} />
-            <div>
-              <h4>{item.name}</h4>
-              <p>Price: ${item.price.toFixed(2)}</p>
-              <p>
+          <li key={item._id} className="cart-item-card">
+            <img src={item.image} alt={item.name} className="cart-item-photo" />
+            <div className="cart-item-info">
+              <h3 className="cart-item-title">{item.name}</h3>
+              <p className="cart-item-cost">Price: ${item.price.toFixed(2)}</p>
+              <div className="cart-item-quantity-controls">
                 Quantity:
-                <button onClick={() => decrementQuantity(item._id)}>-</button>
-                <span style={{ margin: '0 10px' }}>{item.quantity}</span>
-                <button onClick={() => incrementQuantity(item._id)}>+</button>
-              </p>
-              <button onClick={() => removeItem(item._id)}>Remove</button>
+                <button
+                  className="quantity-control-btn decrement"
+                  onClick={() => decrementQuantity(item._id)}
+                >
+                  -
+                </button>
+                <span style={{ margin: '0 10px' }} className="quantity-display">
+                  {item.quantity}
+                </span>
+                <button
+                  onClick={() => incrementQuantity(item._id)}
+                  className="quantity-control-btn increment"
+                >
+                  +
+                </button>
+              </div>
+              <button
+                className="cart-item-remove-btn"
+                onClick={() => removeItem(item._id)}
+              >
+                Remove
+              </button>
             </div>
           </li>
         ))}
       </ul>
 
-      <h3>
-        Total: $
-        {cart.items
-          .reduce((sum, item) => sum + item.price * item.quantity, 0)
-          .toFixed(2)}
-      </h3>
+      <div className="cart-footer">
+        <h3 className="cart-total-price">
+          Total: $
+          {cart.items
+            .reduce((sum, item) => sum + item.price * item.quantity, 0)
+            .toFixed(2)}
+        </h3>
 
-      <button onClick={saveCart}>Save Cart</button>
-    </div>
+        <button className="cart-save-btn" onClick={saveCart}>
+          Save Cart
+        </button>
+      </div>
+    </section>
   )
 }
 export default Cart
