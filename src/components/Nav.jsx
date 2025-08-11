@@ -36,7 +36,7 @@ const Nav = ({ user, handleLogOut }) => {
             <NavLink className="nav-item" to="/products">
               {t('products')}
             </NavLink>
-            <NavLink className="nav-item" to="/order">
+            <NavLink className="nav-item" to="/cart">
               {t('cart')}
             </NavLink>
             <NavLink className="nav-item" to="/profile">

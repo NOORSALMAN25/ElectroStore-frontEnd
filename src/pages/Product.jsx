@@ -7,9 +7,7 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const Product = ({ user }) => {
   const navigate = useNavigate()
-
   const { productId } = useParams()
-
   const [product, setProduct] = useState(null)
   const [reviews, setReviews] = useState([])
 
@@ -18,9 +16,6 @@ const Product = ({ user }) => {
       try {
         const response = await axios.get(`${backendUrl}/products/${productId}`)
         setProduct(response.data)
-        console.log(
-          response.data ? 'Product fetched successfully' : 'No product found'
-        )
         const res = await axios.get(
           `${backendUrl}/products/${productId}/reviews`
         )
@@ -31,17 +26,97 @@ const Product = ({ user }) => {
     }
     fetchProduct()
   }, [])
-
-  const buttons_auth = () => {
-    const handleDelete = async () => {
-      try {
-        await axios.delete(`${backendUrl}/products/${productId}`, product)
-        navigate('/Products')
-      } catch (error) {
-        console.error('Error updating product:', error)
-      }
+  // adding a product work in all cases
+  const addToCart = async () => {
+    if (!user) {
+      navigate('/login')
+      return
     }
 
+    try {
+      const ordersResponse = await axios.get(`${backendUrl}/orders`) // tested
+
+      const userOngoingOrder = ordersResponse.data.find(
+        (order) => order.user === user.id && order.status === 'ongoing'
+      ) // tested
+
+      if (userOngoingOrder) {
+        const existingItem = userOngoingOrder.items.find(
+          (item) => item.product === productId
+        ) // tested
+
+        if (existingItem) {
+          const updatedItems = userOngoingOrder.items.map((item) =>
+            item.product === productId
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          ) //tested
+
+          const newTotal = updatedItems.reduce(
+            (sum, item) => sum + item.price * item.quantity,
+            0
+          ) //tested
+
+          await axios.put(`${backendUrl}/orders/${userOngoingOrder._id}`, {
+            ...userOngoingOrder,
+            items: updatedItems,
+            total: newTotal
+          }) // tested
+        } else {
+          const newItem = {
+            product: productId,
+            name: product.name,
+            quantity: 1,
+            price: product.price,
+            image: product.image
+          }
+
+          const updatedItems = [...userOngoingOrder.items, newItem]
+          const newTotal = updatedItems.reduce(
+            (sum, item) => sum + item.price * item.quantity,
+            0
+          )
+
+          await axios.put(`${backendUrl}/orders/${userOngoingOrder._id}`, {
+            ...userOngoingOrder,
+            items: updatedItems,
+            total: newTotal
+          })
+        }
+      } else {
+        const newOrder = {
+          total: product.price,
+          items: [
+            {
+              product: productId,
+              name: product.name,
+              quantity: 1,
+              price: product.price,
+              image: product.imag
+            }
+          ],
+          user: user.id,
+          status: 'ongoing'
+        }
+        await axios.post(`${backendUrl}/orders`, newOrder)
+      }
+
+      navigate('/cart')
+    } catch (error) {
+      console.error('Error adding to cart:', error)
+    }
+  }
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`${backendUrl}/products/${productId}`, product)
+      navigate('/products')
+    } catch (error) {
+      console.error('Error updating product:', error)
+    }
+  }
+
+  const buttons_auth = () => {
     return (
       <>
         {user && user.role === 'admin' ? (
@@ -49,15 +124,11 @@ const Product = ({ user }) => {
             <Link to={`/Products/${productId}/EditProduct`}>
               <button>Edit</button>
             </Link>
-            <Link to="/Products" onClick={handleDelete}>
-              <button>Delete</button>
-            </Link>
+            <button onClick={handleDelete}>Delete</button>
           </>
         ) : (
           <>
-            <Link to="">
-              <button>Add to Cart</button>
-            </Link>
+            <button onClick={addToCart}>Add to Cart</button>
           </>
         )}
       </>
