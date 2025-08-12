@@ -120,7 +120,7 @@ const Product = ({ user }) => {
     }
   }
 
-  const buttons_auth = () => {
+  const buttons_auth = ({ availability }) => {
     return (
       <>
         {user && user.role === 'admin' ? (
@@ -134,7 +134,11 @@ const Product = ({ user }) => {
           </>
         ) : (
           <>
-            <button className="Add-to-Cart-button" onClick={addToCart}>
+            <button
+              className="Add-to-Cart-button"
+              onClick={addToCart}
+              disabled={availability}
+            >
               Add to Cart
             </button>
           </>
@@ -154,7 +158,7 @@ const Product = ({ user }) => {
             <h3>Price: ${product.price}</h3>
             <p>Category: {product.category}</p>
             <p>{product.description}</p>
-            <p>{buttons_auth()}</p>
+            <p>{buttons_auth(product.availability)}</p>
           </div>
         </div>
       ) : (
@@ -162,7 +166,7 @@ const Product = ({ user }) => {
           <h1> Wait a second ... </h1>
         </div>
       )}
-      <div className="product-reviews">
+      <div>
         <ProductReview
           setReviews={setReviews}
           reviews={reviews}
