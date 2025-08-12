@@ -43,7 +43,7 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
   }
 
   return (
-    <div>
+    <div className="review-section">
       <h2>Add Review </h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -77,7 +77,7 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
       {error && <p>{error}</p>}
 
       {!loading && reviews.length === 0 && <p>No reviews yet.</p>}
-      <div>
+      <div className="review-list">
         {reviews.map((rev) => (
           <div key={rev._id}>
             <header>
