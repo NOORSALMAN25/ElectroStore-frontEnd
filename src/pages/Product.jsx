@@ -141,6 +141,7 @@ const Product = ({ user }) => {
 
   return (
     <div className="one-product-box">
+      <h1 className="h1-Product-Details">Product Details</h1> <br />
       {product ? (
         <div className="one-product-in-a-page">
           <img src={product.image} alt={product.name} />
@@ -151,20 +152,20 @@ const Product = ({ user }) => {
             <p>{product.description}</p>
             <p>{buttons_auth()}</p>
           </div>
-          <div>
-            <ProductReview
-              setReviews={setReviews}
-              reviews={reviews}
-              productId={productId}
-              user={user}
-            />
-          </div>
         </div>
       ) : (
         <div className="wait-message">
           <h1> Wait a second ... </h1>
         </div>
       )}
+      <div className="product-reviews">
+        <ProductReview
+          setReviews={setReviews}
+          reviews={reviews}
+          productId={productId}
+          user={user}
+        />
+      </div>
     </div>
   )
 }

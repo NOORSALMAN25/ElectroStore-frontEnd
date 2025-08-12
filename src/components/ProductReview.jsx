@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 const ProductReview = ({ productId, user, reviews, setReviews }) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL
@@ -44,6 +44,34 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
 
   return (
     <div>
+      <h2>Add Review </h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <div>
+            <label htmlFor="rating">Rating (0–5)</label>
+            <input
+              id="rating"
+              type="number"
+              value={rating}
+              onChange={(e) => setRating(e.target.value)}
+              min="0"
+              max="5"
+              required
+            />
+          </div>
+        </div>
+        <textarea
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          placeholder="Comment"
+          required
+          rows={4}
+        />
+
+        <button type="submit" disabled={loading}>
+          Submit
+        </button>
+      </form>
       <h2>Reviews</h2>
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
@@ -67,36 +95,6 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
           </div>
         ))}
       </div>
-
-      <h3>Add Comment</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <div>
-            <label htmlFor="rating">Rating (0–5)</label>
-            <input
-              id="rating"
-              type="number"
-              value={rating}
-              onChange={(e) => setRating(e.target.value)}
-              min="0"
-              max="5"
-              required
-            />
-          </div>
-        </div>
-
-        <textarea
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-          placeholder="Comment"
-          required
-          rows={4}
-        />
-
-        <button type="submit" disabled={loading}>
-          Submit
-        </button>
-      </form>
     </div>
   )
 }
