@@ -337,16 +337,13 @@ a {
 }
 /* untill here  */
 
-
-/* this is mimi css */
-
 form {
   max-width: 380px;
   margin: 10vh auto;
   padding: 20px;
   background: #fff;
   border-radius: 14px;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
 }
 
 label {
@@ -356,10 +353,9 @@ label {
   margin-bottom: 6px;
 }
 
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+input[type='text'],
+input[type='email'],
+input[type='password'] {
   width: 100%;
   height: 44px;
   padding: 0 14px;
@@ -369,10 +365,10 @@ input[type="password"] {
   outline: none;
   box-sizing: border-box;
 }
-input[type="email"]:focus,
-input[type="password"]:focus {
+input[type='email']:focus,
+input[type='password']:focus {
   border-color: #0ea5e9;
-  box-shadow: 0 0 0 3px rgba(14,165,233,0.15);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
 }
 
 button {
@@ -384,7 +380,7 @@ button {
   color: #fff;
   font-weight: 60;
   cursor: pointer;
-   display: block;
+  display: block;
   margin: 2px auto;
 }
 
@@ -396,4 +392,3 @@ button:disabled {
   background: #cbd5e1;
   cursor: not-allowed;
 }
-
