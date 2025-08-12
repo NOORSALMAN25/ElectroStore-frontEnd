@@ -144,7 +144,9 @@ const Cart = ({ user }) => {
         <button className="cart-save-btn" onClick={saveCart}>
           Save Cart
         </button>
-        <button onClick={checkout}>Buy</button>
+        <button className="buy-btn" onClick={checkout}>
+          Buy
+        </button>
       </div>
     </section>
   )
