@@ -143,6 +143,7 @@ a {
 
 .one-product-box {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 2rem;
@@ -511,6 +512,7 @@ a {
 
 /* ⬆ for the cart ⬆ */
 
+
 /* for the checkout  page  */
 
 .checkout-container {
@@ -690,4 +692,165 @@ a {
 
 .security-icon {
   margin-right: 0.25rem;
+
+.h1-Product-Details {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.Add-to-Cart-button {
+  padding: 12px 18px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.3s ease;
+}
+
+.Add-to-Cart-button:hover {
+  background-color: #0056b3;
+}
+
+.Edit-button {
+  padding: 12px 18px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.3s ease;
+  margin: 5px 20px;
+}
+
+.Edit-button:hover {
+  background-color: #0056b3;
+}
+
+.Delete-button {
+  padding: 12px 18px;
+  background-color: #f80000f7;
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.3s ease;
+}
+
+.Delete-button:hover {
+  background-color: #c80000f7;
+}
+
+/* ______ Add Review ________*/
+.review-section {
+  max-width: 1000px;
+  width: 900px;
+  margin: 20px;
+  padding: 2rem;
+  border: 1px solid #b6b6b69c;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Form */
+.review-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-section label {
+  font-weight: bold;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.review-section input[type='number'],
+.review-section textarea {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #fff;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.review-section textarea {
+  resize: vertical;
+}
+
+.review-section button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 80px;
+}
+
+.review-section button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+.review-section button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+/* Reviews list */
+.review-list {
+  margin-top: 15px;
+}
+
+.review-list > div {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.review-list header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.review-list span {
+  color: gold;
+  font-size: 1.2em;
+}
+
+.review-list p {
+  margin: 5px 0;
+}
+
+.review-list button {
+  margin-top: 8px;
+  background-color: #dc3545;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  border-radius: 4px;
+}
+
+.review-list button:hover {
+  background-color: #a71d2a;
 }

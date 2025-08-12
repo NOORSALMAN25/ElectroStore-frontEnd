@@ -120,19 +120,27 @@ const Product = ({ user }) => {
     }
   }
 
-  const buttons_auth = () => {
+  const buttons_auth = ({ availability }) => {
     return (
       <>
         {user && user.role === 'admin' ? (
           <>
             <Link to={`/Products/${productId}/EditProduct`}>
-              <button>Edit</button>
+              <button className="Edit-button">Edit</button>
             </Link>
-            <button onClick={handleDelete}>Delete</button>
+            <button className="Delete-button" onClick={handleDelete}>
+              Delete Product
+            </button>
           </>
         ) : (
           <>
-            <button onClick={addToCart}>Add to Cart</button>
+            <button
+              className="Add-to-Cart-button"
+              onClick={addToCart}
+              disabled={availability}
+            >
+              Add to Cart
+            </button>
           </>
         )}
       </>
@@ -141,6 +149,7 @@ const Product = ({ user }) => {
 
   return (
     <div className="one-product-box">
+      <h1 className="h1-Product-Details">Product Details</h1> <br />
       {product ? (
         <div className="one-product-in-a-page">
           <img src={product.image} alt={product.name} />
@@ -149,15 +158,7 @@ const Product = ({ user }) => {
             <h3>Price: ${product.price}</h3>
             <p>Category: {product.category}</p>
             <p>{product.description}</p>
-            <p>{buttons_auth()}</p>
-          </div>
-          <div>
-            <ProductReview
-              setReviews={setReviews}
-              reviews={reviews}
-              productId={productId}
-              user={user}
-            />
+            <p>{buttons_auth(product.availability)}</p>
           </div>
         </div>
       ) : (
@@ -165,6 +166,14 @@ const Product = ({ user }) => {
           <h1> Wait a second ... </h1>
         </div>
       )}
+      <div>
+        <ProductReview
+          setReviews={setReviews}
+          reviews={reviews}
+          productId={productId}
+          user={user}
+        />
+      </div>
     </div>
   )
 }
