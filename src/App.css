@@ -1117,3 +1117,19 @@ a {
   font-size: 1.125rem;
   margin-top: 0.5rem;
 }
+
+.empty-cart-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #434343;
+  text-align: center;
+  background-color: #f9f9f9;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 150px auto;
+}
