@@ -375,3 +375,25 @@ input[type="password"]:focus {
   box-shadow: 0 0 0 3px rgba(14,165,233,0.15);
 }
 
+button {
+  width: 30%;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  background: #0ea5e9;
+  color: #fff;
+  font-weight: 60;
+  cursor: pointer;
+   display: block;
+  margin: 2px auto;
+}
+
+button:hover {
+  background: #0284c7;
+}
+
+button:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+
