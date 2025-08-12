@@ -33,7 +33,6 @@ const Product = ({ user }) => {
       navigate('/login')
       return
     }
-
     try {
       const ordersResponse = await axios.get(`${backendUrl}/orders`) // tested
 
@@ -120,7 +119,7 @@ const Product = ({ user }) => {
     }
   }
 
-  const buttons_auth = ({ availability }) => {
+  const buttons_auth = () => {
     return (
       <>
         {user && user.role === 'admin' ? (
@@ -137,10 +136,13 @@ const Product = ({ user }) => {
             <button
               className="Add-to-Cart-button"
               onClick={addToCart}
-              disabled={availability}
+              disabled={!product.availability}
             >
               Add to Cart
             </button>
+            {!product.availability && (
+              <p style={{ color: 'red', marginTop: '5px' }}>Out of stock.</p>
+            )}
           </>
         )}
       </>
