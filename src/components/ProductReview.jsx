@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 const ProductReview = ({ productId, user, reviews, setReviews }) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL
@@ -7,6 +7,8 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
   const [rating, setRating] = useState(0)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+
+  // When you fetch reviews (on page load)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
