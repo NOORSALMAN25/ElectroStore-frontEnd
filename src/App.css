@@ -512,7 +512,6 @@ a {
 
 /* ⬆ for the cart ⬆ */
 
-
 /* for the checkout  page  */
 
 .checkout-container {
@@ -692,7 +691,7 @@ a {
 
 .security-icon {
   margin-right: 0.25rem;
-
+}
 .h1-Product-Details {
   text-align: center;
   font-size: 2rem;
@@ -859,4 +858,262 @@ a {
 
 .review-list button:hover {
   background-color: #a71d2a;
+}
+
+/* Homepage Styles */
+.homepage-container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, white, #dbeafe, #fed7aa);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.cta-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.signup-button {
+  position: relative;
+  padding: 1rem 3rem;
+  background: linear-gradient(to right, #2563eb, #f97316);
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: none;
+  cursor: pointer;
+  transform: scale(1);
+  transition: all 0.3s ease;
+}
+
+.signup-button:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: scale(1.05);
+  background: linear-gradient(to right, #1d4ed8, #ea580c);
+}
+
+.signup-button-text {
+  position: relative;
+  z-index: 10;
+}
+
+.signup-button-blur {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #60a5fa, #fdba74);
+  border-radius: 9999px;
+  filter: blur(4px);
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.signup-button:hover .signup-button-blur {
+  opacity: 1;
+}
+
+.cta-description {
+  color: #4b5563;
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.hero-section {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.hero-title {
+  font-size: 3.75rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 1rem;
+  letter-spacing: -0.025em;
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  color: #374151;
+  margin-bottom: 2rem;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  max-width: 56rem;
+  margin-bottom: 3rem;
+}
+
+.slideshow-wrapper {
+  position: relative;
+  height: 24rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide-active {
+  opacity: 1;
+}
+
+.slide-inactive {
+  opacity: 0;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(30, 58, 138, 0.3), transparent);
+}
+
+.slide-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.indicator {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator-active {
+  background-color: #f97316;
+  transform: scale(1.25);
+}
+
+.indicator-inactive {
+  background-color: #60a5fa;
+}
+
+.indicator-inactive:hover {
+  background-color: #fb923c;
+}
+
+.info-section {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.info-title {
+  color: #4b5563;
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+}
+
+.features-list {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.feature-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+}
+
+.feature-dot-blue {
+  background-color: #3b82f6;
+}
+
+.feature-dot-orange {
+  background-color: #f97316;
+}
+
+.feature-dot-blue-dark {
+  background-color: #2563eb;
+}
+
+.background-animation {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+}
+
+.particles-container {
+  position: absolute;
+  inset: -2.5rem;
+  opacity: 0.3;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 9999px;
+  animation: pulse 2s infinite;
+}
+
+.particle-blue {
+  background-color: #60a5fa;
+}
+
+.particle-orange {
+  background-color: #fb923c;
+}
+
+.particle-blue-light {
+  background-color: #93c5fd;
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.welcome-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #1e3a8a;
+  margin-bottom: 1rem;
+  letter-spacing: -0.025em;
+}
+
+.username {
+  color: #f97316;
+  font-weight: 700;
+  background: linear-gradient(to right, #f97316, #ea580c);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.welcome-description {
+  color: #4b5563;
+  font-size: 1.125rem;
+  margin-top: 0.5rem;
 }
