@@ -126,13 +126,17 @@ const Product = ({ user }) => {
         {user && user.role === 'admin' ? (
           <>
             <Link to={`/Products/${productId}/EditProduct`}>
-              <button>Edit</button>
+              <button className="Edit-button">Edit</button>
             </Link>
-            <button onClick={handleDelete}>Delete</button>
+            <button className="Delete-button" onClick={handleDelete}>
+              Delete
+            </button>
           </>
         ) : (
           <>
-            <button onClick={addToCart}>Add to Cart</button>
+            <button className="Add-to-Cart-button" onClick={addToCart}>
+              Add to Cart
+            </button>
           </>
         )}
       </>
