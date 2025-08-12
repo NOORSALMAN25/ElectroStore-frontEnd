@@ -336,3 +336,23 @@ a {
   background-color: #0056b3;
 }
 /* untill here  */
+
+
+/* this is mimi css */
+
+form {
+  max-width: 380px;
+  margin: 10vh auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
