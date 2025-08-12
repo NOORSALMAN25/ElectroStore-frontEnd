@@ -129,7 +129,7 @@ const Product = ({ user }) => {
               <button className="Edit-button">Edit</button>
             </Link>
             <button className="Delete-button" onClick={handleDelete}>
-              Delete
+              Delete Product
             </button>
           </>
         ) : (
