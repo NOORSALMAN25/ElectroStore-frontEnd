@@ -48,7 +48,7 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
       <form onSubmit={handleSubmit}>
         <div>
           <div>
-            <label htmlFor="rating">Rating (0–5)</label>
+            <label htmlFor="rating">Rating </label>
             <input
               id="rating"
               type="number"
