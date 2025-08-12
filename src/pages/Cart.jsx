@@ -4,6 +4,7 @@ import axios from 'axios'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const Cart = ({ user }) => {
+  let navigate = useNavigate()
   const [cart, setCart] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -79,6 +80,16 @@ const Cart = ({ user }) => {
     }
   }
 
+  const checkout = async () => {
+    try {
+      await axios.delete(`${backendUrl}/cart/${user.id}`)
+      setCart({ ...cart, items: [] })
+      navigate('/checkout')
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   if (loading) return <p>Loading cart...</p>
   if (error) return <p>{error}</p>
   if (!cart || cart.items.length === 0) return <p>Your cart is empty.</p>
@@ -133,6 +144,7 @@ const Cart = ({ user }) => {
         <button className="cart-save-btn" onClick={saveCart}>
           Save Cart
         </button>
+        <button onClick={checkout}>Buy</button>
       </div>
     </section>
   )
