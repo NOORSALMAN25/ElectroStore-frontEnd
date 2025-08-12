@@ -93,7 +93,7 @@ const Cart = ({ user }) => {
   if (loading) return <p>Loading cart...</p>
   if (error) return <p>{error}</p>
   if (!cart || cart.items.length === 0)
-    return <p className="empty-cart-message">Your cart is empty.</p>
+    return <p className="empty-cart-message">Your cart is empty</p>
 
   return (
     <section className="cart-wrapper">
