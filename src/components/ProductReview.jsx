@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useTranslation } from 'react-i18next'
-
+import Client from '../services/api'
 const ProductReview = ({ productId, user, reviews, setReviews }) => {
   const { t, i18n } = useTranslation()
 
@@ -27,7 +27,7 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
     try {
       setLoading(true)
       setError(null)
-      const res = await axios.post(
+      const res = await Client.post(
         `${backendUrl}/products/${productId}/reviews`,
         {
           comment: comment,
@@ -35,6 +35,7 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
           user: user.id
         }
       )
+      console.log(res)
 
       let reviewsCopy = [...reviews]
       reviewsCopy.push(res.data)
@@ -51,7 +52,7 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${backendUrl}/products/${productId}/reviews/${id}`)
+      await Client.delete(`${backendUrl}/products/${productId}/reviews/${id}`)
       setReviews(reviews.filter((r) => r._id !== id))
     } catch (error) {
       alert('Failed to delete review')

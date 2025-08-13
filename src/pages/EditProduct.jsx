@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import Client from '../services/api'
+
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const EditProduct = () => {
@@ -19,7 +21,7 @@ const EditProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`${backendUrl}/products/${productId}`)
+        const response = await Client.get(`${backendUrl}/products/${productId}`)
         setProduct(response.data)
       } catch (error) {
         console.error('Error fetching product:', error)
@@ -36,7 +38,7 @@ const EditProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await axios.put(`${backendUrl}/products/${productId}`, product)
+      await Client.put(`${backendUrl}/products/${productId}`, product)
       setUpdated(true)
     } catch (error) {
       console.error('Error updating product:', error)
