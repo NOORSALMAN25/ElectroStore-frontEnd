@@ -74,9 +74,9 @@ const Profile = ({ user }) => {
   if (error) return <p>Error: {error}</p>
 
   if (!profile) {
-    return (   
+    return (
       <div>
-        <h2>You don't have an account</h2>    
+        <h2>You don't have an account</h2>
         <p>Please create an account to access your profile.</p>
       </div>
     )
@@ -151,5 +151,3 @@ const Profile = ({ user }) => {
 }
 
 export default Profile
-
-//at the profile will be only the user and role and email
