@@ -8,6 +8,10 @@
 
 #### Our project is a full-stack e-commerce platform for electronics that removes the need for physical store visits by allowing customers to browse a wide range of products with detailed descriptions, images, and specifications, all updated in real time. Users can add items to their basket for a smooth and secure checkout experience. For store managers, the platform includes an admin view to add new products so customers can purchase them, as well as delete outdated or out-of-stock items to make room for new ones, ensuring the store is always accurate, fresh, and up to date.
 
+## Getting Started
+
+#### Upon opening the website, the user will immediately see the available types of electronic devices displayed on the homepage, allowing them to easily explore the categories and choose the section they want to shop from.
+
 ## Technologies Used
 
 - **React** – Frontend UI library for building interactive interfaces
@@ -64,11 +68,26 @@ It starts from `main.jsx` and `App`, branching out into major sections like:
 - **Order Ratings & Filtering** – Display the average rating of each order and allow filtering by date or number of stars.
 - **Responsive Design** – Adapt the interface to different screen sizes for a better user experience on all devices.
 - **Printable Receipt** – Generate a printable receipt in case the application is used as a POS (Point of Sale) system.
+- **Dark/Light Modes** – Implement different themes (dark or light) based on user preferences.
 
 ## **Credits**
 
--
--
+- Special thanks to our amazing project supervisor [Michael Lackey](https://www.linkedin.com/in/michaelglackey/) for guidance, feedback, and Support.
+- Team brainstorming and task management via [Trello](https://trello.com/).
+
+### Frontend
+
+1. [react-i18next](https://www.npmjs.com/package/react-i18next) – Internationalization (i18n) library for React to support multiple languages.
+2. [EmailJS (React Example)](https://www.emailjs.com/docs/examples/reactjs/) – Service for sending emails directly from the client side without a backend.
+
+#### Style & Design
+
+1. [Canva](https://www.canva.com/) – Used for creating design assets and visual elements.
+2. [Color Hunt](https://colorhunt.co/) – Source for modern color palettes and inspiration.
+
+#### Backend
+
+1. Assistance from the **Luqma Project** team in implementing the user profile feature.
 
 # 👤 Authors (Developed by)
 
@@ -78,12 +97,12 @@ It starts from `main.jsx` and `App`, branching out into major sections like:
 
 ### Noor Salman
 
-📫 Email: [](mailto:) | 🔗 GitHub: [NOORSALMAN25](https://github.com/NOORSALMAN25) | 💼 LinkedIn: [Noor Salman
+🔗 GitHub: [NOORSALMAN25](https://github.com/NOORSALMAN25) | 💼 LinkedIn: [Noor Salman
 ](https://www.linkedin.com/in/noorsalman10/)
 
 ### Mariam Salah
 
-📫 Email: [maryamsalah233@gmail.com](mailto:maryamsalah233@gmail.com) | 🔗 GitHub: [Mariam Salah](https://github.com/maryamsali2) | 💼 LinkedIn: []()
+📫 Email: [maryamsalah233@gmail.com](mailto:maryamsalah233@gmail.com) | 🔗 GitHub: [Mariam Salah](https://github.com/maryamsali2) | 💼 LinkedIn: [Maryam Ali](https://www.linkedin.com/in/maryamsalahsaleh/)
 
 ---
 
