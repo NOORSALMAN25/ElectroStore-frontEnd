@@ -1,8 +1,14 @@
 import { useState } from 'react'
 import { RegisterUser } from '../services/Auth'
 import { useNavigate } from 'react-router-dom'
-
+import { useTranslation } from 'react-i18next'
 const SignUp = () => {
+  const { t, i18n } = useTranslation()
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng)
+  }
+
   let navigate = useNavigate()
 
   const initialState = {
@@ -26,14 +32,14 @@ const SignUp = () => {
 
   return (
     <div>
-      <h2 className="title-info">Sign Up</h2>
-      <form className='first-sign' onSubmit={handleSubmit}>
+      <h2 className="title-info">{t('signup_title')}</h2>
+      <form className="first-sign" onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">{t('signup_name_label')}</label>
           <input
             name="name"
             type="text"
-            placeholder="Enter your name"
+            placeholder={t('signup_name_placeholder')}
             onChange={handleChange}
             value={formValues.name}
             required
@@ -41,11 +47,11 @@ const SignUp = () => {
           />
         </div>
         <div>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">{t('signup_email_label')}</label>
           <input
             name="email"
             type="email"
-            placeholder="example@example.com"
+            placeholder={t('signup_email_placeholder')}
             onChange={handleChange}
             value={formValues.email}
             required
@@ -53,7 +59,7 @@ const SignUp = () => {
           />
         </div>
         <div>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">{t('signup_password_label')}</label>
           <input
             name="password"
             type="password"
@@ -64,7 +70,9 @@ const SignUp = () => {
           />
         </div>
         <div>
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label htmlFor="confirmPassword">
+            {t('signup_confirm_password_label')}
+          </label>
           <input
             name="confirmPassword"
             type="password"
@@ -81,7 +89,7 @@ const SignUp = () => {
               formValues.password === formValues.confirmPassword)
           }
         >
-          Sign-up
+          {t('signup_button')}
         </button>
       </form>
     </div>

@@ -3,9 +3,15 @@ import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import ProductReview from '../components/ProductReview'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const Product = ({ user }) => {
+  const { t, i18n } = useTranslation()
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng)
+  }
   const navigate = useNavigate()
   const { productId } = useParams()
   const [product, setProduct] = useState(null)
@@ -125,10 +131,12 @@ const Product = ({ user }) => {
         {user && user.role === 'admin' ? (
           <>
             <Link to={`/Products/${productId}/EditProduct`}>
-              <button className="Edit-button">Edit</button>
+              <button className="Edit-button">
+                {t('product_edit_button')}
+              </button>
             </Link>
             <button className="Delete-button" onClick={handleDelete}>
-              Delete Product
+              {t('product_delete_button')}
             </button>
           </>
         ) : (
@@ -138,10 +146,13 @@ const Product = ({ user }) => {
               onClick={addToCart}
               disabled={!product.availability}
             >
-              Add to Cart
+              {t('product_add_to_cart')}
             </button>
             {!product.availability && (
-              <p style={{ color: 'red', marginTop: '5px' }}>Out of stock.</p>
+              <p style={{ color: 'red', marginTop: '5px' }}>
+                {' '}
+                {t('product_out_of_stock')}
+              </p>
             )}
           </>
         )}
@@ -151,21 +162,26 @@ const Product = ({ user }) => {
 
   return (
     <div className="one-product-box">
-      <h1 className="h1-Product-Details">Product Details</h1> <br />
+      <h1 className="h1-Product-Details">{t('product_details_title')}</h1>{' '}
+      <br />
       {product ? (
         <div className="one-product-in-a-page">
           <img src={product.image} alt={product.name} />
           <div className="product-details">
             <h2>{product.name}</h2>
-            <h3>Price: ${product.price}</h3>
-            <p>Category: {product.category}</p>
+            <h3>
+              {t('product_price')}: ${product.price}
+            </h3>
+            <p>
+              {t('product_category')}: {product.category}
+            </p>
             <p>{product.description}</p>
             <p>{buttons_auth(product.availability)}</p>
           </div>
         </div>
       ) : (
         <div className="wait-message">
-          <h1> Wait a second ... </h1>
+          <h1>{t('wait_message')}</h1>
         </div>
       )}
       <div>
