@@ -1278,3 +1278,22 @@ label {
   max-width: 400px;
   margin: 0 auto;
 }
+
+button.english,
+button.arabic {
+  padding: 6px 16px;
+  margin: 0 4px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+button.english:hover,
+button.arabic:hover {
+  background-color: #333;
+  color: #fff;
+}

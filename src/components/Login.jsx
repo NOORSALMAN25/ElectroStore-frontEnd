@@ -1,8 +1,14 @@
 import { useState } from 'react'
 import { SignInUser } from '../services/Auth'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const Login = ({ setUser }) => {
+  const { t, i18n } = useTranslation()
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng)
+  }
   let navigate = useNavigate()
   const initialState = { email: '', password: '' }
   const [formValues, setFormValues] = useState(initialState)
@@ -19,15 +25,15 @@ const Login = ({ setUser }) => {
   }
 
   return (
-    <div >
-      <h2 className='title-info'>Sign In</h2>
-      <form className='first-sign' onSubmit={handleSubmit}>
+    <div>
+      <h2 className="title-info">{t('signin_title')}</h2>
+      <form className="first-sign" onSubmit={handleSubmit}>
         <div>
-          <label  htmlFor="email">Email</label>
+          <label htmlFor="email">{t('signin_email_label')}</label>
           <input
             name="email"
             type="email"
-            placeholder="example@example.com"
+            placeholder={t('signin_email_placeholder')}
             onChange={handleChange}
             value={formValues.email}
             required
@@ -35,7 +41,7 @@ const Login = ({ setUser }) => {
           />
         </div>
         <div>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">{t('signin_password_label')}</label>
           <input
             name="password"
             type="password"
@@ -46,7 +52,7 @@ const Login = ({ setUser }) => {
           />
         </div>
         <button disabled={!formValues.email || !formValues.password}>
-          Sign-In
+          {t('signin_button')}
         </button>
       </form>
     </div>
