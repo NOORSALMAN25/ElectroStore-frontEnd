@@ -20,7 +20,6 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!comment || rating < 0 || rating > 5) {
-      alert('Please fill all fields correctly')
       return
     }
 
@@ -54,9 +53,7 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
     try {
       await Client.delete(`${backendUrl}/products/${productId}/reviews/${id}`)
       setReviews(reviews.filter((r) => r._id !== id))
-    } catch (error) {
-      alert('Failed to delete review')
-    }
+    } catch (error) {}
   }
 
   return (

@@ -34,7 +34,6 @@ const CheckOut = () => {
       })
       .catch((error) => {
         console.error('Error sending email:', error)
-        alert('Failed to send confirmation email.')
       })
   }
 

@@ -43,7 +43,7 @@ const Profile = ({ user }) => {
         setEditing(false)
       })
       .catch(() => {
-        alert('Failed to update user information')
+        throw error
       })
   }
 
