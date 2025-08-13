@@ -8,6 +8,8 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
+  // When you fetch reviews (on page load)
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!comment || rating < 0 || rating > 5) {
@@ -43,13 +45,41 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
   }
 
   return (
-    <div>
+    <div className="review-section">
+      <h2>Add Review </h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <div>
+            <label htmlFor="rating">Rating </label>
+            <input
+              id="rating"
+              type="number"
+              value={rating}
+              onChange={(e) => setRating(e.target.value)}
+              min="0"
+              max="5"
+              required
+            />
+          </div>
+        </div>
+        <textarea
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          placeholder="Comment"
+          required
+          rows={4}
+        />
+
+        <button type="submit" disabled={loading}>
+          Submit
+        </button>
+      </form>
       <h2>Reviews</h2>
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
 
       {!loading && reviews.length === 0 && <p>No reviews yet.</p>}
-      <div>
+      <div className="review-list">
         {reviews.map((rev) => (
           <div key={rev._id}>
             <header>
@@ -67,36 +97,6 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
           </div>
         ))}
       </div>
-
-      <h3>Add Comment</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <div>
-            <label htmlFor="rating">Rating (0–5)</label>
-            <input
-              id="rating"
-              type="number"
-              value={rating}
-              onChange={(e) => setRating(e.target.value)}
-              min="0"
-              max="5"
-              required
-            />
-          </div>
-        </div>
-
-        <textarea
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-          placeholder="Comment"
-          required
-          rows={4}
-        />
-
-        <button type="submit" disabled={loading}>
-          Submit
-        </button>
-      </form>
     </div>
   )
 }

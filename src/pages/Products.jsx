@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import ProductCard from '../components/ProductCard'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
-const Products = ({ user }) => {
+const Products = () => {
   const [products, setProducts] = useState([])
   const [searchQuery, setSearchQuery] = useState('')
   const [category, setCategory] = useState('')
@@ -72,15 +72,15 @@ const Products = ({ user }) => {
         </form>
       </div>
 
-      <div className="products-list">
-        {filteredProducts.length === 0 ? (
-          <p>No products found.</p>
-        ) : (
-          filteredProducts.map((product) => (
+      {filteredProducts.length === 0 ? (
+        <div className="no-products-message">No products found</div>
+      ) : (
+        <div className="products-list">
+          {filteredProducts.map((product) => (
             <ProductCard key={product._id} product={product} />
-          ))
-        )}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

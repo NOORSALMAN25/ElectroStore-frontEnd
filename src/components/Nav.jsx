@@ -15,8 +15,8 @@ const Nav = ({ user, handleLogOut }) => {
       </NavLink>
 
       <div className="nav-links">
-        <button onClick={() => changeLanguage('en')}>EN</button>
-        <button onClick={() => changeLanguage('ar')}>AR</button>
+        <button onClick={() => changeLanguage('en')}>English</button>
+        <button onClick={() => changeLanguage('ar')}>عربي</button>
         <NavLink className="nav-item" to="/">
           {t('home')}
         </NavLink>
@@ -36,7 +36,7 @@ const Nav = ({ user, handleLogOut }) => {
             <NavLink className="nav-item" to="/products">
               {t('products')}
             </NavLink>
-            <NavLink className="nav-item" to="/order">
+            <NavLink className="nav-item" to="/cart">
               {t('cart')}
             </NavLink>
             <NavLink className="nav-item" to="/profile">

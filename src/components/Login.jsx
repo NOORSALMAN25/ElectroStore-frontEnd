@@ -15,7 +15,6 @@ const Login = ({ setUser }) => {
     const userData = await SignInUser(formValues)
     setFormValues(initialState)
     setUser(userData)
-    console.log('here')
     navigate('/')
   }
 

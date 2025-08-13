@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import User from '../services/api'
+import Client from '../services/api'
 
 const Profile = ({ user }) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL
@@ -15,6 +15,7 @@ const Profile = ({ user }) => {
   const [oldPassword, setOldPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [passwordMessage, setPasswordMessage] = useState('')
+  const [showPasswordForm, setShowPasswordForm] = useState(false)
 
   useEffect(() => {
     if (!user?.id) {
@@ -22,7 +23,7 @@ const Profile = ({ user }) => {
       return
     }
 
-    User.get(`${backendUrl}/profile/${user.id}`)
+    Client.get(`${backendUrl}/profile/${user.id}`)
       .then((res) => {
         setProfile(res.data)
         setName(res.data.name)
@@ -36,13 +37,36 @@ const Profile = ({ user }) => {
   }, [user?.id, backendUrl])
 
   const handleSave = () => {
-    User.put(`${backendUrl}/profile/${user.id}`, { name, email })
+    Client.put(`${backendUrl}/profile/${user.id}`, { name, email })
       .then((res) => {
         setProfile(res.data)
         setEditing(false)
       })
       .catch(() => {
         alert('Failed to update user information')
+      })
+  }
+
+  const handlePasswordChange = (e) => {
+    e.preventDefault()
+    setPasswordMessage('')
+    Client.put(`${backendUrl}/profile/${user.id}/password`, {
+      oldPassword,
+      newPassword
+    })
+      .then((res) => {
+        setPasswordMessage(res.data.status)
+        setOldPassword('')
+        setNewPassword('')
+        setShowPasswordForm(false)
+      })
+
+      .catch((err) => {
+        if (err.response && err.response.data && err.response.data.msg) {
+          setPasswordMessage(err.response.data.msg)
+        } else {
+          setPasswordMessage('Failed to update password')
+        }
       })
   }
 
@@ -89,6 +113,37 @@ const Profile = ({ user }) => {
           <h5>Email: {profile.email}</h5>
           <h5>Role: {profile.role}</h5>
           <button onClick={() => setEditing(true)}>Edit</button>
+
+          <br />
+          <button onClick={() => setShowPasswordForm(!showPasswordForm)}>
+            {showPasswordForm ? 'Cancle password Change' : 'change password'}
+          </button>
+          {showPasswordForm && (
+            <form onSubmit={handlePasswordChange}>
+              <lable>
+                Old password :{''}
+                <input
+                  type="password"
+                  value={oldPassword}
+                  onChange={(e) => setOldPassword(e.target.value)}
+                  required
+                />
+              </lable>
+              <br />
+              <lable>
+                New password :{''}
+                <input
+                  type="password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  required
+                />
+              </lable>
+              <br />
+              <button type="submit">Update Password</button>
+              {passwordMessage && <p>{passwordMessage}</p>}
+            </form>
+          )}
         </>
       )}
     </div>
