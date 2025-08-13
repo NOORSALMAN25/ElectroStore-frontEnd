@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Client from '../services/api'
+
 import { useTranslation } from 'react-i18next'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
@@ -22,7 +24,7 @@ const Cart = ({ user }) => {
     const fetchCart = async () => {
       try {
         setLoading(true)
-        const res = await axios.get(`${backendUrl}/cart/${user.id}`)
+        const res = await Client.get(`${backendUrl}/cart/${user.id}`)
         setCart(res.data)
       } catch (err) {
         setError('Failed to fetch cart')
@@ -58,7 +60,7 @@ const Cart = ({ user }) => {
   // Remove item from cart
   const removeItem = async (itemId) => {
     try {
-      await axios.delete(`${backendUrl}/cart/${user.id}/${itemId}`)
+      await Client.delete(`${backendUrl}/cart/${user.id}/${itemId}`)
       // Remove locally
       setCart({
         ...cart,
@@ -81,7 +83,7 @@ const Cart = ({ user }) => {
         total
       }
 
-      await axios.put(`${backendUrl}/orders/${cart._id}`, updatedCart)
+      await Client.put(`${backendUrl}/orders/${cart._id}`, updatedCart)
     } catch (err) {
       throw new Error('Failed to save cart')
     }
@@ -89,7 +91,7 @@ const Cart = ({ user }) => {
 
   const checkout = async () => {
     try {
-      await axios.delete(`${backendUrl}/cart/${user.id}`)
+      await Client.delete(`${backendUrl}/cart/${user.id}`)
       setCart({ ...cart, items: [] })
       navigate('/checkout')
     } catch (err) {

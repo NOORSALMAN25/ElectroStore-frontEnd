@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Client from '../services/api'
+
 import ProductReview from '../components/ProductReview'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -20,9 +22,9 @@ const Product = ({ user }) => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`${backendUrl}/products/${productId}`)
+        const response = await Client.get(`${backendUrl}/products/${productId}`)
         setProduct(response.data)
-        const res = await axios.get(
+        const res = await Client.get(
           `${backendUrl}/products/${productId}/reviews`
         )
         setReviews(res.data)
@@ -40,7 +42,7 @@ const Product = ({ user }) => {
       return
     }
     try {
-      const ordersResponse = await axios.get(`${backendUrl}/orders`) // tested
+      const ordersResponse = await Client.get(`${backendUrl}/orders`) // tested
 
       const userOngoingOrders = ordersResponse.data.filter(
         (order) => order.user === user.id && order.status === 'ongoing'
@@ -66,7 +68,7 @@ const Product = ({ user }) => {
             0
           ) //tested
 
-          await axios.put(`${backendUrl}/orders/${userOngoingOrder._id}`, {
+          await Client.put(`${backendUrl}/orders/${userOngoingOrder._id}`, {
             ...userOngoingOrder,
             items: updatedItems,
             total: newTotal
@@ -86,7 +88,7 @@ const Product = ({ user }) => {
             0
           )
 
-          await axios.put(`${backendUrl}/orders/${userOngoingOrder._id}`, {
+          await Client.put(`${backendUrl}/orders/${userOngoingOrder._id}`, {
             ...userOngoingOrder,
             items: updatedItems,
             total: newTotal
@@ -107,7 +109,7 @@ const Product = ({ user }) => {
           user: user.id,
           status: 'ongoing'
         }
-        await axios.post(`${backendUrl}/orders`, newOrder)
+        await Client.post(`${backendUrl}/orders`, newOrder)
       }
 
       navigate('/cart')
@@ -118,7 +120,7 @@ const Product = ({ user }) => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${backendUrl}/products/${productId}`, product)
+      await Client.delete(`${backendUrl}/products/${productId}`, product)
       navigate('/products')
     } catch (error) {
       console.error('Error updating product:', error)

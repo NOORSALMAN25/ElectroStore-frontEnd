@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import Client from '../services/api'
+
 import ProductCard from '../components/ProductCard'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 const Products = () => {
@@ -11,7 +13,7 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`${backendUrl}/products`)
+        const response = await Client.get(`${backendUrl}/products`)
         setProducts(response.data)
         setFilteredProducts(response.data)
       } catch (error) {

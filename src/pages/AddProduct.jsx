@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Client from '../services/api'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const categories = [
@@ -42,7 +43,7 @@ const AddProduct = () => {
       image: imageRef.current.value,
       availability: availability
     }
-    const res = await axios.post(`${backendUrl}/products`, data)
+    const res = await Client.post(`${backendUrl}/products`, data)
 
     nameRef.current.value = ''
     priceRef.current.value = 0
