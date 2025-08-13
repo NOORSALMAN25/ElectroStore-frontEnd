@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useTranslation } from 'react-i18next'
+
 const ProductReview = ({ productId, user, reviews, setReviews }) => {
+  const { t, i18n } = useTranslation()
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng)
+  }
   const backendUrl = import.meta.env.VITE_BACKEND_URL
 
   const [comment, setComment] = useState('')
@@ -53,11 +60,11 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
 
   return (
     <div className="review-section">
-      <h2>Add Review </h2>
+      <h2>{t('review_add_title')}</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <div>
-            <label htmlFor="rating">Rating </label>
+            <label htmlFor="rating">{t('review_rating_label')}</label>
             <input
               id="rating"
               type="number"
@@ -72,20 +79,26 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
         <textarea
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          placeholder="Comment"
+          placeholder={t('review_comment_placeholder')}
           required
           rows={4}
         />
 
         <button type="submit" disabled={loading}>
-          Submit
+          {t('review_submit_button')}
         </button>
       </form>
-      <h2>Reviews</h2>
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
 
-      {!loading && reviews.length === 0 && <p>No reviews yet.</p>}
+      <h2>{t('review_list_title')}</h2>
+      {loading && <p>{t('review_loading')}</p>}
+      {error && (
+        <p>
+          {t('review_error')}: {error}
+        </p>
+      )}
+
+      {!loading && reviews.length === 0 && <p>{t('review_no_reviews')}</p>}
+
       <div className="review-list">
         {reviews.map((rev) => (
           <div key={rev._id}>
@@ -99,7 +112,9 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
 
             <p>{rev.comment}</p>
             {user && rev.user === user.id && (
-              <button onClick={() => handleDelete(rev._id)}>Delete</button>
+              <button onClick={() => handleDelete(rev._id)}>
+                {t('review_delete_button')}
+              </button>
             )}
           </div>
         ))}

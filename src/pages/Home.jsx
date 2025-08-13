@@ -1,7 +1,14 @@
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const Home = ({ user }) => {
+  const { t, i18n } = useTranslation()
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng)
+  }
+
   const [currentSlide, setCurrentSlide] = useState(0)
 
   const images = [
@@ -26,19 +33,14 @@ const Home = ({ user }) => {
         <div className="homepage-container">
           <div className="welcome-section">
             <h2 className="welcome-title">
-              Welcome, <span className="username">{user.name}!</span>
+              {t('welcomename')}, <span className="username">{user.name}!</span>
             </h2>
-            <p className="welcome-description">
-              Ready to explore our latest electronics collection?
-            </p>
+            <p className="welcome-description">{t('welcomeinfo')}</p>
           </div>
 
           <div className="hero-section">
-            <h1 className="hero-title">Premium Electronics Store</h1>
-            <p className="hero-description">
-              Discover cutting-edge technology and innovative electronics with
-              fast delivery and premium quality
-            </p>
+            <h1 className="hero-title"> {t('bigtitle')}</h1>
+            <p className="hero-description">{t('bigtitleinfo')}</p>
           </div>
 
           <div className="slideshow-container">
@@ -76,21 +78,19 @@ const Home = ({ user }) => {
           </div>
 
           <div className="info-section">
-            <p className="info-title">
-              Join thousands of tech enthusiasts worldwide
-            </p>
+            <p className="info-title">{t('footer')}</p>
             <div className="features-list">
               <div className="feature-item">
                 <div className="feature-dot feature-dot-blue"></div>
-                <span>Free Shipping</span>
+                <span> {t('footerD')}</span>
               </div>
               <div className="feature-item">
                 <div className="feature-dot feature-dot-orange"></div>
-                <span>1 Year Warranty</span>
+                <span> {t('footerW')}</span>
               </div>
               <div className="feature-item">
                 <div className="feature-dot feature-dot-blue-dark"></div>
-                <span>24/7 Support</span>
+                <span> {t('footerS')}</span>
               </div>
             </div>
           </div>
@@ -102,23 +102,16 @@ const Home = ({ user }) => {
               onClick={() => navigate('/signup')}
               className="signup-button"
             >
-              <span className="signup-button-text">
-                Sign Up to Start Shopping
-              </span>
+              <span className="signup-button-text">{t('signuphome')}</span>
               <div className="signup-button-blur"></div>
             </button>
 
-            <p className="cta-description">
-              Create your account and explore our electronics collection
-            </p>
+            <p className="cta-description">{t('signuphomeinfo')}</p>
           </div>
 
           <div className="hero-section">
-            <h1 className="hero-title">Premium Electronics Store</h1>
-            <p className="hero-description">
-              Discover cutting-edge technology and innovative electronics with
-              fast delivery and premium quality
-            </p>
+            <h1 className="hero-title"> {t('bigtitle')}</h1>
+            <p className="hero-description">{t('bigtitleinfo')}</p>
           </div>
 
           <div className="slideshow-container">
@@ -156,21 +149,19 @@ const Home = ({ user }) => {
           </div>
 
           <div className="info-section">
-            <p className="info-title">
-              Join thousands of tech enthusiasts worldwide
-            </p>
+            <p className="info-title">{t('footer')}</p>
             <div className="features-list">
               <div className="feature-item">
                 <div className="feature-dot feature-dot-blue"></div>
-                <span>Free Shipping</span>
+                <span>{t('footerD')}</span>
               </div>
               <div className="feature-item">
                 <div className="feature-dot feature-dot-orange"></div>
-                <span>1 Year Warranty</span>
+                <span>{t('footerW')}</span>
               </div>
               <div className="feature-item">
                 <div className="feature-dot feature-dot-blue-dark"></div>
-                <span>24/7 Support</span>
+                <span>{t('footerS')}</span>
               </div>
             </div>
           </div>

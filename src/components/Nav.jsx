@@ -15,8 +15,12 @@ const Nav = ({ user, handleLogOut }) => {
       </NavLink>
 
       <div className="nav-links">
-        <button onClick={() => changeLanguage('en')}>English</button>
-        <button onClick={() => changeLanguage('ar')}>عربي</button>
+        <button className="english" onClick={() => changeLanguage('en')}>
+          English
+        </button>
+        <button className="arabic" onClick={() => changeLanguage('ar')}>
+          عربي
+        </button>
         <NavLink className="nav-item" to="/">
           {t('home')}
         </NavLink>

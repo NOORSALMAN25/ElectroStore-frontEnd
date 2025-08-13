@@ -6,5 +6,69 @@
   "signout": "تسجيل الخروج",
   "addProduct": "إضافة منتج",
   "cart": "السلة",
-  "profile": "حسابي"
+  "profile": "حسابي",
+  "signuphome": "سجّل الحين وابدأ رحلتك بالتسوّق",
+  "signuphomeinfo": "افتح حسابك واستمتع بتشكيلة إلكترونيات ما تلقاها إلا عندنا",
+  "bigtitle": "متجر الإلكترونيات الفاخر",
+  "bigtitleinfo": "اكتشف أحدث التقنيات وأجدد الابتكارات مع توصيل فوري وجودة مضمونة",
+  "footer": "انضم لآلاف عشاق التقنية وخلّك دايم أول من يجرب الجديد",
+  "footerD": "شحن مجاني سريع",
+  "footerW": "ضمان سنة كاملة بدون قلق",
+  "footerS": "خدمة عملاء 24/7 دايم معاك",
+  "welcomename": "هلا وغلا",
+  "welcomeinfo": "جاهز تنطلق وتشوف آخر وأحلى تشكيلاتنا من الإلكترونيات؟",
+  "signin_title": "تسجيل الدخول",
+  "signin_email_label": "البريد الإلكتروني",
+  "signin_email_placeholder": "example@example.com",
+  "signin_password_label": "كلمة المرور",
+  "signin_button": "تسجيل الدخول",
+  "signup_title": "سجّل حساب جديد",
+  "signup_name_label": "الاسم",
+  "signup_name_placeholder": "اكتب اسمك",
+  "signup_email_label": "الإيميل",
+  "signup_email_placeholder": "name@example.com",
+  "signup_password_label": "كلمة السر",
+  "signup_confirm_password_label": "تأكيد كلمة السر",
+  "signup_button": "تسجيل",
+  "emptycart": "سلة التسوّق فارغة، يلا أضف منتجاتك المفضلة!",
+  "Loadingcart": "جاري تحميل السلة ..",
+  "cart_heading": "سلة التسوّق",
+  "cart_item_price": "السعر",
+  "cart_item_quantity": "الكمية",
+  "cart_item_remove": "حذف",
+  "cart_total": "المجموع",
+  "cart_save": "حفظ السلة",
+  "cart_buy": "شراء",
+  "product_details_title": "تفاصيل المنتج",
+  "product_price": "السعر",
+  "product_category": "الفئة",
+  "product_edit_button": "تعديل",
+  "product_delete_button": "حذف المنتج",
+  "product_add_to_cart": "أضف إلى السلة",
+  "product_out_of_stock": "غير متوفر في المخزون.",
+  "wait_message": "لحظة من فضلك ...",
+  "review_add_title": "أضف تقييم",
+  "review_rating_label": "التقييم",
+  "review_comment_placeholder": "اكتب تعليقك",
+  "review_submit_button": "إرسال",
+  "review_list_title": "التقييمات",
+  "review_loading": "جاري التحميل...",
+  "review_error": "حدث خطأ",
+  "review_no_reviews": "لا توجد تقييمات بعد.",
+  "review_delete_button": "حذف",
+  "checkout_title": "إتمام الطلب",
+  "checkout_subtitle": "أكمل تفاصيل طلبك أدناه",
+  "checkout_email_label": "البريد الإلكتروني",
+  "checkout_email_placeholder": "اكتب بريدك الإلكتروني",
+  "checkout_payment_method_title": "طريقة الدفع",
+  "checkout_payment_cash": "الدفع عند الاستلام",
+  "checkout_delivery_address_title": "عنوان التوصيل",
+  "checkout_building_label": "رقم المبنى",
+  "checkout_building_placeholder": "مثال: 123",
+  "checkout_road_label": "رقم الشارع",
+  "checkout_road_placeholder": "مثال: 445",
+  "checkout_block_label": "رقم المجمع ",
+  "checkout_block_placeholder": "مثال: 347",
+  "checkout_submit_button": "إرسال",
+  "checkout_security_text": "معلوماتك آمنة ومشفرة 🔒"
 }

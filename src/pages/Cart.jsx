@@ -1,9 +1,16 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { useTranslation } from 'react-i18next'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const Cart = ({ user }) => {
+  const { t, i18n } = useTranslation()
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng)
+  }
+
   let navigate = useNavigate()
   const [cart, setCart] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -90,23 +97,25 @@ const Cart = ({ user }) => {
     }
   }
 
-  if (loading) return <p>Loading cart...</p>
+  if (loading) return <p>{t('Loadingcart')}</p>
   if (error) return <p>{error}</p>
   if (!cart || cart.items.length === 0)
-    return <p className="empty-cart-message">Your cart is empty</p>
+    return <p className="empty-cart-message">{t('emptycart')}</p>
 
   return (
     <section className="cart-wrapper">
-      <h1 className="cart-heading">Shopping Cart</h1>
+      <h1 className="cart-heading">{t('cart_heading')}</h1>
       <ul className="cart-list">
         {cart.items.map((item) => (
           <li key={item._id} className="cart-item-card">
             <img src={item.image} alt={item.name} className="cart-item-photo" />
             <div className="cart-item-info">
               <h3 className="cart-item-title">{item.name}</h3>
-              <p className="cart-item-cost">Price: ${item.price.toFixed(2)}</p>
+              <p className="cart-item-cost">
+                {t('cart_item_price')}: ${item.price.toFixed(2)}
+              </p>
               <div className="cart-item-quantity-controls">
-                Quantity:
+                {t('cart_item_quantity')}:
                 <button
                   className="quantity-control-btn decrement"
                   onClick={() => decrementQuantity(item._id)}
@@ -127,7 +136,7 @@ const Cart = ({ user }) => {
                 className="cart-item-remove-btn"
                 onClick={() => removeItem(item._id)}
               >
-                Remove
+                {t('cart_item_remove')}
               </button>
             </div>
           </li>
@@ -136,17 +145,17 @@ const Cart = ({ user }) => {
 
       <div className="cart-footer">
         <h3 className="cart-total-price">
-          Total: $
+          {t('cart_total')}: $
           {cart.items
             .reduce((sum, item) => sum + item.price * item.quantity, 0)
             .toFixed(2)}
         </h3>
 
         <button className="cart-save-btn" onClick={saveCart}>
-          Save Cart
+          {t('cart_save')}
         </button>
         <button className="buy-btn" onClick={checkout}>
-          Buy
+          {t('cart_buy')}
         </button>
       </div>
     </section>
