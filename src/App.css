@@ -1176,7 +1176,6 @@ button:disabled {
   margin-top: 0.5rem;
 }
 
-<<<<<<< HEAD
 form {
   max-width: 380px;
   margin: 10vh auto;
@@ -1231,7 +1230,7 @@ button:hover {
 button:disabled {
   background: #cbd5e1;
   cursor: not-allowed;
-=======
+}
 .empty-cart-message {
   display: flex;
   align-items: center;
@@ -1262,5 +1261,4 @@ button:disabled {
   border-radius: 10px;
   max-width: 400px;
   margin: 0 auto;
->>>>>>> 031019a2b56e14fc3826c4849ad09967a781dd19
 }
