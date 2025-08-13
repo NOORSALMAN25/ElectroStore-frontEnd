@@ -81,67 +81,105 @@ const Profile = ({ user }) => {
       </div>
     )
   }
-
   return (
-    <div>
+    <div className="profile-card">
       {editing ? (
         <form
+          className="profile-form"
           onSubmit={(e) => {
             e.preventDefault()
             handleSave()
           }}
         >
-          <label>
-            Name:{' '}
-            <input value={name} onChange={(e) => setName(e.target.value)} />
+          <label className="form-label">
+            Name:
+            <input
+              className="form-input"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </label>
-          <br />
-          <label>
-            Email:{' '}
-            <input value={email} onChange={(e) => setEmail(e.target.value)} />
+
+          <label className="form-label">
+            Email:
+            <input
+              className="form-input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </label>
-          <br />
-          <button type="submit">Save</button>
-          <button type="button" onClick={() => setEditing(false)}>
-            Cancel
-          </button>
+
+          <div className="form-actions">
+            <button type="submit" className="btn btn-primary">
+              Save
+            </button>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={() => setEditing(false)}
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       ) : (
         <>
-          <h3>User Details</h3>
-          <h5>Name: {profile.name}</h5>
-          <h5>Email: {profile.email}</h5>
-          <h5>Role: {profile.role}</h5>
-          <button onClick={() => setEditing(true)}>Edit</button>
+          <h3 className="section-title">User Details</h3>
+          <p className="detail-item">
+            <strong>Name:</strong> {profile.name}
+          </p>
+          <p className="detail-item">
+            <strong>Email:</strong> {profile.email}
+          </p>
+          <p className="detail-item">
+            <strong>Role:</strong> {profile.role}
+          </p>
 
-          <br />
-          <button onClick={() => setShowPasswordForm(!showPasswordForm)}>
-            {showPasswordForm ? 'Cancle password Change' : 'change password'}
-          </button>
+          <div className="form-actions">
+            <button
+              className="btn btn-primary"
+              onClick={() => setEditing(true)}
+            >
+              Edit
+            </button>
+            <button
+              className="btn btn-accent"
+              onClick={() => setShowPasswordForm(!showPasswordForm)}
+            >
+              {showPasswordForm ? 'Cancel password change' : 'Change password'}
+            </button>
+          </div>
+
           {showPasswordForm && (
-            <form onSubmit={handlePasswordChange}>
-              <lable>
-                Old password :{''}
+            <form className="password-form" onSubmit={handlePasswordChange}>
+              <label className="form-label">
+                Old password:
                 <input
+                  className="form-input"
                   type="password"
                   value={oldPassword}
                   onChange={(e) => setOldPassword(e.target.value)}
                   required
                 />
-              </lable>
-              <br />
-              <lable>
-                New password :{''}
+              </label>
+
+              <label className="form-label">
+                New password:
                 <input
+                  className="form-input"
                   type="password"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   required
                 />
-              </lable>
-              <br />
-              <button type="submit">Update Password</button>
-              {passwordMessage && <p>{passwordMessage}</p>}
+              </label>
+
+              <button type="submit" className="btn btn-primary">
+                Update Password
+              </button>
+              {passwordMessage && (
+                <p className="password-message">{passwordMessage}</p>
+              )}
             </form>
           )}
         </>
