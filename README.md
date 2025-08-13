@@ -18,6 +18,11 @@
 - **RESTful APIs** – Communication between frontend and backend
 - **MERN Stack** – Combination of MongoDB, Express, React, and Node for full-stack development
 
+## Screenshot
+
+Screenshot for the application
+![ERD](public/images/Screenshot.png)
+
 ## **Entity Relationship Diagram (ERD)**
 
 The ERD below illustrates the database structure of the application, defining how entities relate to each other.
@@ -48,10 +53,6 @@ It starts from `main.jsx` and `App`, branching out into major sections like:
 
 ![Components Hierarchy ](public/images/ComponentsHierarchy.png)
 
----
-
-## **Unsolved Problems**
-
 ## **Unsolved Problems**
 
 - When users click the **Buy** button, the entire cart is intentionally cleared. However, the issue is that items are also removed from the database, meaning they will not appear in the previous orders feature once it is implemented.
@@ -59,10 +60,10 @@ It starts from `main.jsx` and `App`, branching out into major sections like:
 
 ## **Possible Future Enhancements**
 
-- previous orders feature: A page the allow the ser to see his old orders and everthing in them.
-- Eglish to Arabic translation for all the application (it have been implemented only in the `navar`).
-- showing the average start of each order, and filtering by data or numer of starts.
--
+- **Previous Orders Feature** – A page that allows the user to view their past orders along with all the details.
+- **Order Ratings & Filtering** – Display the average rating of each order and allow filtering by date or number of stars.
+- **Responsive Design** – Adapt the interface to different screen sizes for a better user experience on all devices.
+- **Printable Receipt** – Generate a printable receipt in case the application is used as a POS (Point of Sale) system.
 
 ## **Credits**
 
