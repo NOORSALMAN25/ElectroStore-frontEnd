@@ -68,6 +68,7 @@ It starts from `main.jsx` and `App`, branching out into major sections like:
 - **Order Ratings & Filtering** – Display the average rating of each order and allow filtering by date or number of stars.
 - **Responsive Design** – Adapt the interface to different screen sizes for a better user experience on all devices.
 - **Printable Receipt** – Generate a printable receipt in case the application is used as a POS (Point of Sale) system.
+- **Dark/Light Modes** – Implement different themes (dark or light) based on user preferences.
 
 ## **Credits**
 
