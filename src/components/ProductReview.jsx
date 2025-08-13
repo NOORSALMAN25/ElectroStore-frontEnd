@@ -20,11 +20,18 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
     try {
       setLoading(true)
       setError(null)
-      await axios.post(`${backendUrl}/products/${productId}/reviews`, {
-        comment: comment,
-        rating: Number(rating),
-        user: user.id
-      })
+      const res = await axios.post(
+        `${backendUrl}/products/${productId}/reviews`,
+        {
+          comment: comment,
+          rating: Number(rating),
+          user: user.id
+        }
+      )
+
+      let reviewsCopy = [...reviews]
+      reviewsCopy.push(res.data)
+      setReviews(reviewsCopy)
 
       setComment('')
       setRating(0)
