@@ -336,6 +336,65 @@ a {
   background-color: #0056b3;
 }
 
+/* untill here  */
+
+form {
+  max-width: 380px;
+  margin: 10vh auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'] {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid #e9e9ef;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+input[type='email']:focus,
+input[type='password']:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+}
+
+button {
+  width: 30%;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  background: #0ea5e9;
+  color: #fff;
+  font-weight: 60;
+  cursor: pointer;
+  display: block;
+  margin: 2px auto;
+}
+
+button:hover {
+  background: #0284c7;
+}
+
+button:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+
+
 /* ⬇ for the cart ⬇ */
 
 .cart-wrapper {
