@@ -72,15 +72,15 @@ const Products = () => {
         </form>
       </div>
 
-      <div className="products-list">
-        {filteredProducts.length === 0 ? (
-          <p>No products found.</p>
-        ) : (
-          filteredProducts.map((product) => (
+      {filteredProducts.length === 0 ? (
+        <div className="no-products-message">No products found</div>
+      ) : (
+        <div className="products-list">
+          {filteredProducts.map((product) => (
             <ProductCard key={product._id} product={product} />
-          ))
-        )}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

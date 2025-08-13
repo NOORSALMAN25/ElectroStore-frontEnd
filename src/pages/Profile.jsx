@@ -151,5 +151,3 @@ const Profile = ({ user }) => {
 }
 
 export default Profile
-
-//at the profile will be only the user and role and email
