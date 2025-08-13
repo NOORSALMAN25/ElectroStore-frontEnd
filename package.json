@@ -5,6 +5,7 @@
   "version": "2.1.0",
   "type": "module",
   "scripts": {
+    "build": "vite build && npx surge --project ./dist --domain 'electro-store.surge.sh'",
     "dev": "vite",
     "package-update": "npx npm-check-updates -u && npm install"
   },

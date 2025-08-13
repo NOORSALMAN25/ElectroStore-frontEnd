@@ -34,6 +34,7 @@ const ProductReview = ({ productId, user, reviews, setReviews }) => {
           user: user.id
         }
       )
+
       console.log(res)
 
       let reviewsCopy = [...reviews]
