@@ -1183,7 +1183,9 @@ label {
   margin-top: 0.5rem;
 }
 
-form {
+/* untill here  */
+
+.first-sign {
   max-width: 380px;
   margin: 10vh auto;
   padding: 20px;
@@ -1199,9 +1201,9 @@ label {
   margin-bottom: 6px;
 }
 
-input[type='text'],
-input[type='email'],
-input[type='password'] {
+.first-sign input[type='text'],
+.first-sign input[type='email'],
+.first-sign input[type='password'] {
   width: 100%;
   height: 44px;
   padding: 0 14px;
@@ -1211,13 +1213,13 @@ input[type='password'] {
   outline: none;
   box-sizing: border-box;
 }
-input[type='email']:focus,
-input[type='password']:focus {
+.first-sign input[type='email']:focus,
+.first-sign input[type='password']:focus {
   border-color: #0ea5e9;
   box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
 }
 
-form button {
+.first-sign button {
   width: 30%;
   height: 50px;
   border: none;
@@ -1230,13 +1232,20 @@ form button {
   margin: 2px auto;
 }
 
-button:hover {
+.first-sign button:hover {
   background: #0284c7;
 }
 
-button:disabled {
+.first-sign button:disabled {
   background: #cbd5e1;
   cursor: not-allowed;
+}
+
+.title-info {
+  text-align: center;
+  padding-top: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #0056b3;
 }
 .empty-cart-message {
   display: flex;
