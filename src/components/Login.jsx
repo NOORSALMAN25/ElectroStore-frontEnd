@@ -19,10 +19,11 @@ const Login = ({ setUser }) => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div >
+      <h2 className='title-info'>Sign In</h2>
+      <form className='first-sign' onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="email">Email</label>
+          <label  htmlFor="email">Email</label>
           <input
             name="email"
             type="email"
@@ -45,7 +46,7 @@ const Login = ({ setUser }) => {
           />
         </div>
         <button disabled={!formValues.email || !formValues.password}>
-          Login
+          Sign-In
         </button>
       </form>
     </div>
