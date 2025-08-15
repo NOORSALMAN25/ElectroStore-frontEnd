@@ -106,4 +106,4 @@ It starts from `main.jsx` and `App`, branching out into major sections like:
 
 ---
 
-[⬆ return to the top](#-Unsolved-Problems)
+[⬆ return to the top](#-ElectroStore)
