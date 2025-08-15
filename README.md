@@ -103,7 +103,3 @@ It starts from `main.jsx` and `App`, branching out into major sections like:
 ### Mariam Salah
 
 📫 Email: [maryamsalah233@gmail.com](mailto:maryamsalah233@gmail.com) | 🔗 GitHub: [Mariam Salah](https://github.com/maryamsali2) | 💼 LinkedIn: [Maryam Ali](https://www.linkedin.com/in/maryamsalahsaleh/)
-
----
-
-[⬆ return to the top](#-electroStore)
